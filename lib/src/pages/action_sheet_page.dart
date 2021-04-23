@@ -1,17 +1,16 @@
-import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fullter_main_app/src/api_calling/api_constant.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
-import 'package:fullter_main_app/src/widgets/bottom_sheet_modal.dart';
+import 'package:fullter_main_app/src/widgets/action_bottom_sheet_modal.dart';
 
 class ActionSheetPage extends StatefulWidget {
   ActionSheetPage({Key key}) : super(key: key);
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ActionSheetPageState createState() => _ActionSheetPageState();
 }
 
-class _MyHomePageState extends State<ActionSheetPage> {
+class _ActionSheetPageState extends State<ActionSheetPage> {
   @override
   Widget build(BuildContext context) {
     //Center View
@@ -34,7 +33,7 @@ class _MyHomePageState extends State<ActionSheetPage> {
                 ElevatedButton(
                   child: const Text('show Modal Bottom Sheet'),
                   onPressed: () {
-                    BottomSheetModal(
+                    ActionBottomSheetModal(
                       isAndroid: ConstantC.isAndroidPlatform,
                       alertTitle: "Share option",
                       itemList: [

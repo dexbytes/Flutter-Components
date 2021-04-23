@@ -10,7 +10,7 @@ class ItemModel {
   ItemModel({this.menuName = "", this.itemTextColor});
 }
 
-class BottomSheetModal {
+class ActionBottomSheetModal {
   IntCallback
       selectedItemCallBack; //Call back function it call when user click on any menu item button and return index
   VoidCallback
@@ -27,7 +27,7 @@ class BottomSheetModal {
   TextStyle styleRowTitleIos;
   bool isAndroid;
 
-  BottomSheetModal({
+  ActionBottomSheetModal({
     @required this.context,
     @required this.cancelCallBack,
     @required this.selectedItemCallBack,
@@ -46,12 +46,12 @@ class BottomSheetModal {
     this.styleRowTitleIos,
   }) {
     //Check device platform
-    /* if (Platform.isIOS) {
+    /*if (Platform.isIOS) {
       this.isAndroid = false;
     } else if (Platform.isAndroid) {
       this.isAndroid = true;
     }*/
-    _bottomSheetModal();
+    _actionBottomSheetModal();
   }
 
   //Single row of items
@@ -145,7 +145,7 @@ class BottomSheetModal {
     );
   }
 
-  Future<void> _bottomSheetModal() {
+  Future<void> _actionBottomSheetModal() {
     return showModalBottomSheet<void>(
       isScrollControlled: false,
       context: context,

@@ -8,10 +8,10 @@ import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
 class AlertPage extends StatefulWidget {
   AlertPage({Key key}) : super(key: key);
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _AlertPageState createState() => _AlertPageState();
 }
 
-class _MyHomePageState extends State<AlertPage> {
+class _AlertPageState extends State<AlertPage> {
   @override
   Widget build(BuildContext context) {
     //Center View

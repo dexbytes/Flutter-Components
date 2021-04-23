@@ -21,7 +21,7 @@ import 'package:fullter_main_app/src/widgets/DraggableFloatingActionButton.dart'
 import 'package:fullter_main_app/src/widgets/alerts/confirmation_alert.dart';
 import 'package:fullter_main_app/src/widgets/alerts/inform_alert.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
-import 'package:fullter_main_app/src/widgets/bottom_sheet_modal.dart';
+import 'package:fullter_main_app/src/widgets/action_bottom_sheet_modal.dart';
 import 'package:fullter_main_app/src/widgets/floating_action_bubble.dart';
 import 'package:fullter_main_app/src/widgets/labeled_check_box.dart';
 import 'package:fullter_main_app/src/widgets/labeled_check_box_flexible_width.dart';
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<HomeNewPage>
             ElevatedButton(
               child: const Text('showModalBottomSheet'),
               onPressed: () {
-                BottomSheetModal(
+                ActionBottomSheetModal(
                   alertTitle: "Share option",
                   itemList: [
                     ItemModel(menuName: "Delete", itemTextColor: Colors.red),

@@ -29,11 +29,11 @@ class InfoAlert {
       this.isAndroid = false})
       : assert(message != null) {
     //Check device platform
-    /*if (Platform.isIOS) {
+    if (Platform.isIOS) {
       this.isAndroid = false;
     } else if (Platform.isAndroid) {
       this.isAndroid = true;
-    }*/
+    }
     infoAlert();
   }
   Future<bool> infoAlert() {
@@ -81,9 +81,6 @@ class InfoAlert {
 
   Text buildTextPositiveAction({Color textColorItem}) {
     Text textView;
-    /* if (textColorItem == null) {
-      textColorItem = isAndroid ? Colors.black : Colors.blue;
-    }*/
     //Ios
     textView = textStyleConfirmActionIos != null
         ? Text("$confirmActionText", style: textStyleConfirmActionIos)

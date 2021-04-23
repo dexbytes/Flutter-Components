@@ -17,6 +17,7 @@ import 'package:fullter_main_app/src/pages/divider_list_page.dart';
 import 'package:fullter_main_app/src/pages/divider_thumnail_list_page.dart';
 import 'package:fullter_main_app/src/pages/floating_button_page.dart';
 import 'package:fullter_main_app/src/pages/item_list_page.dart';
+import 'package:fullter_main_app/src/pages/custom_switch_page.dart';
 import 'package:fullter_main_app/src/widgets/DraggableFloatingActionButton.dart';
 import 'package:fullter_main_app/src/widgets/alerts/confirmation_alert.dart';
 import 'package:fullter_main_app/src/widgets/alerts/inform_alert.dart';
@@ -53,6 +54,7 @@ class _MyHomePageState extends State<HomeNewPage>
     ScreenListModel(screen: DividerListPage(), title: "Divider List"),
     ScreenListModel(screen: DividerIconListPage(), title: "Icon List"),
     ScreenListModel(screen: DividerAvatarListPage(), title: "Avatar List"),
+    ScreenListModel(screen: CustomSwitchPage(), title: "Custom Switch"),
     ScreenListModel(
         screen: DividerThumbnailListPage(), title: "Thumbnail List"),
   ];
@@ -75,99 +77,6 @@ class _MyHomePageState extends State<HomeNewPage>
   Widget build(BuildContext context) {
     /* final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;*/
-
-    //Center View
-    Widget _centerView() {
-      return Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            InkWell(onTap: () {}, child: Text("Flutter Demo Text 1")),
-            InkWell(onTap: () {}, child: Text("Flutter Demo Text 1")),
-            InkWell(onTap: () {}, child: Text("Flutter Demo Text 1")),
-            ElevatedButton(
-              child: const Text('showModalBottomSheet'),
-              onPressed: () {
-                ActionBottomSheetModal(
-                  alertTitle: "Share option",
-                  itemList: [
-                    ItemModel(menuName: "Delete", itemTextColor: Colors.red),
-                    ItemModel(menuName: "Share"),
-                    ItemModel(menuName: "Pay"),
-                    ItemModel(menuName: "Favorite")
-                  ],
-                  context: context,
-                  selectedItemCallBack: (num) {},
-                );
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Confirm Alert'),
-              onPressed: () {
-                ConfirmationAlert(
-                    context: context,
-                    // message: "",
-                    noCallback: (alertContext) {
-                      // Navigator.pop(alertContext);
-                    },
-                    callBackYes: (alertContext) {
-                      // Navigator.pop(alertContext);
-                    });
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Info Alert'),
-              onPressed: () {
-                InfoAlert(
-                    context: context,
-                    // message: "",
-                    callBackConfirm: (alertContext) {
-                      // Navigator.pop(alertContext);
-                    });
-              },
-            ),
-            Text("Full screen"),
-            LabeledCheckbox(
-              label: 'This is the label text kfjhdkfhsk ljhljljfljs ',
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              value: _isSelected,
-              onChanged: (bool newValue) {
-                setState(() {
-                  _isSelected = newValue;
-                });
-              },
-            ),
-            Text("Flexible"),
-            Row(
-              children: [
-                LabeledCheckboxFlexibleWidth(
-                  label: 'hello  ',
-                  padding: EdgeInsets.symmetric(horizontal: 5.0),
-                  value: _isSelected,
-                  onChanged: (bool newValue) {
-                    setState(() {
-                      _isSelected = newValue;
-                    });
-                  },
-                ),
-                LabeledCheckboxFlexibleWidth(
-                  label: 'hello dasdasdadasd ',
-                  padding: EdgeInsets.symmetric(horizontal: 5.0),
-                  value: _isSelected,
-                  onChanged: (bool newValue) {
-                    setState(() {
-                      _isSelected = newValue;
-                    });
-                  },
-                )
-              ],
-            ),
-          ],
-        ),
-      );
-    }
 
     //Back Press
     _onBackPressed() {
@@ -197,7 +106,7 @@ class _MyHomePageState extends State<HomeNewPage>
                       children: [
                         Center(
                           child: Padding(
-                            padding: EdgeInsets.only(top: 60),
+                            padding: EdgeInsets.only(top: 5),
                             child: ListView.builder(
                                 itemCount: screenList.length,
                                 itemBuilder: (BuildContext context, int index) {
@@ -241,14 +150,14 @@ class _MyHomePageState extends State<HomeNewPage>
                                 }),
                           ),
                         ),
-                        Align(
+                        /*Align(
                           alignment: Alignment.topCenter,
                           child: AndroidIosCheckbox(
                             onChanged: () {
                               setState(() {});
                             },
                           ),
-                        ),
+                        ),*/
                         DraggableFloatingActionButton(
                             controller:
                                 mDraggableFloatingActionButtonController,
@@ -263,7 +172,7 @@ class _MyHomePageState extends State<HomeNewPage>
                             appContext: context,
                             data: 'Demo',
                             offset: new Offset(100, 100),
-                            // backgroundColor: Theme.of(context).accentColor,
+                            backgroundColor: Colors.white,
                             child: Icon(
                               Icons.wb_incandescent,
                               color: ConstantC.isAndroidPlatform

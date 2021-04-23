@@ -33,7 +33,7 @@ class DraggableFloatingActionButton extends StatefulWidget {
       this.childView,
       this.tooltip,
       this.foregroundColor,
-      this.backgroundColor,
+      this.backgroundColor = Colors.white,
       this.heroTag = const _DefaultHeroTag(),
       this.elevation = 6.0,
       this.highlightElevation = 12.0,
@@ -165,7 +165,7 @@ class _DraggableFloatingActionButtonState
             widget.onPressed();
           }
           expandFunction();
-          },
+        },
         shape: widget.shape,
         isExtended: widget.isExtended,
         materialTapTargetSize: widget.materialTapTargetSize,

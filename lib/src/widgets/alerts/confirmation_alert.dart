@@ -37,11 +37,11 @@ class ConfirmationAlert {
       this.noCallback})
       : assert(message != null) {
     //Check device platform
-    /* if (Platform.isIOS) {
+    if (Platform.isIOS) {
       this.isAndroid = false;
     } else if (Platform.isAndroid) {
       this.isAndroid = true;
-    }*/
+    }
     confirmationAlert();
   }
   Future<bool> confirmationAlert() {

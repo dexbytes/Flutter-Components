@@ -37,13 +37,8 @@ class _AlertPageState extends State<AlertPage> {
                     ConfirmationAlert(
                         isAndroid: ConstantC.isAndroidPlatform,
                         context: context,
-                        // message: "",
-                        noCallback: (alertContext) {
-                          // Navigator.pop(alertContext);
-                        },
-                        callBackYes: (alertContext) {
-                          // Navigator.pop(alertContext);
-                        });
+                        noCallback: (alertContext) {},
+                        callBackYes: (alertContext) {});
                   },
                 ),
                 ElevatedButton(

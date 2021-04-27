@@ -18,6 +18,8 @@ import 'package:fullter_main_app/src/pages/divider_thumnail_list_page.dart';
 import 'package:fullter_main_app/src/pages/floating_button_page.dart';
 import 'package:fullter_main_app/src/pages/item_list_page.dart';
 import 'package:fullter_main_app/src/pages/custom_switch_page.dart';
+import 'package:fullter_main_app/src/pages/popover_page.dart';
+import 'package:fullter_main_app/src/pages/radio_page.dart';
 import 'package:fullter_main_app/src/widgets/DraggableFloatingActionButton.dart';
 import 'package:fullter_main_app/src/widgets/alerts/confirmation_alert.dart';
 import 'package:fullter_main_app/src/widgets/alerts/inform_alert.dart';
@@ -55,6 +57,8 @@ class _MyHomePageState extends State<HomeNewPage>
     ScreenListModel(screen: DividerIconListPage(), title: "Icon List"),
     ScreenListModel(screen: DividerAvatarListPage(), title: "Avatar List"),
     ScreenListModel(screen: CustomSwitchPage(), title: "Custom Switch"),
+    ScreenListModel(screen: RadioPage(), title: "Radio "),
+    ScreenListModel(screen: PopoverPage(), title: "PopOver "),
     ScreenListModel(
         screen: DividerThumbnailListPage(), title: "Thumbnail List"),
   ];

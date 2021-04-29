@@ -73,7 +73,13 @@ class _AlertPageState extends State<AlertPage> {
                 bottom: false,
                 child: Scaffold(
                   backgroundColor: Colors.white.withOpacity(0.8),
-                  //appBar:_appBar(),
+                  appBar: AppBar(
+                    backgroundColor: Color.fromRGBO(36, 41, 46, 1),
+                    title: Text(
+                      "Alert",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                   body: Container(
                     // color: Colors.white,
                     child: SingleChildScrollView(

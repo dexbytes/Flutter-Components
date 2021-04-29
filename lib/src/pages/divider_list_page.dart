@@ -1,13 +1,6 @@
-import 'dart:io';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:fullter_main_app/src/api_calling/api_constant.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
-import 'package:fullter_main_app/src/widgets/badge.dart';
 import 'package:fullter_main_app/src/widgets/dividerListCustom.dart';
-import 'package:fullter_main_app/src/widgets/icon_right_with_text.dart';
-import 'package:fullter_main_app/src/widgets/labeled_check_box.dart';
-import 'package:fullter_main_app/src/widgets/listViewCustom.dart';
 
 class DividerListPage extends StatefulWidget {
   DividerListPage({Key key}) : super(key: key);
@@ -61,7 +54,13 @@ class _DividerListPageState extends State<DividerListPage> {
                 bottom: false,
                 child: Scaffold(
                   backgroundColor: Colors.white,
-                  //appBar:_appBar(),
+                  appBar: AppBar(
+                    backgroundColor: Color.fromRGBO(36, 41, 46, 1),
+                    title: Text(
+                      "Item Divider list",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                   body: Container(
                     color: Colors.white,
                     child: _centerView(),

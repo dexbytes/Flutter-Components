@@ -1,10 +1,7 @@
-import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:fullter_main_app/src/api_calling/api_constant.dart';
 import 'package:fullter_main_app/src/widgets/DraggableFloatingActionButton.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
-import 'package:fullter_main_app/src/widgets/action_bottom_sheet_modal.dart';
 import 'package:fullter_main_app/src/widgets/unicorndial.dart';
 import 'package:fullter_main_app/src/widgets/unicorndial_new.dart';
 
@@ -176,7 +173,13 @@ class _FloatingButtonsPageState extends State<FloatingButtonsPage> {
             child: SafeArea(
                 bottom: false,
                 child: Scaffold(
-                  //appBar:_appBar(),
+                  appBar: AppBar(
+                    backgroundColor: Color.fromRGBO(36, 41, 46, 1),
+                    title: Text(
+                      "Floating Button",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                   body: Container(
                     // color: Colors.white,
                     child: Align(

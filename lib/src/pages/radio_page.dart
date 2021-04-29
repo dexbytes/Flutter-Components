@@ -110,7 +110,13 @@ class _RadioPageState extends State<RadioPage> {
                 bottom: false,
                 child: Scaffold(
                   backgroundColor: Colors.white,
-                  //appBar:_appBar(),
+                  appBar: AppBar(
+                    backgroundColor: Color.fromRGBO(36, 41, 46, 1),
+                    title: Text(
+                      "Radio",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                   body: Container(
                     color: Colors.white,
                     child: _centerView(),

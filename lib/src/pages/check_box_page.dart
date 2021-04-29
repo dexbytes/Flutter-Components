@@ -6,10 +6,10 @@ import 'package:fullter_main_app/src/widgets/labeled_check_box.dart';
 class CheckBoxPage extends StatefulWidget {
   CheckBoxPage({Key key}) : super(key: key);
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _CheckBoxPageState createState() => _CheckBoxPageState();
 }
 
-class _MyHomePageState extends State<CheckBoxPage> {
+class _CheckBoxPageState extends State<CheckBoxPage> {
   bool _isSelected = false;
   bool _isSelected1 = false;
   bool _isSelected2 = true;
@@ -110,7 +110,13 @@ class _MyHomePageState extends State<CheckBoxPage> {
                 bottom: false,
                 child: Scaffold(
                   backgroundColor: Colors.white,
-                  //appBar:_appBar(),
+                  appBar: AppBar(
+                    backgroundColor: Color.fromRGBO(36, 41, 46, 1),
+                    title: Text(
+                      "Check box",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                   body: Container(
                     color: Colors.white,
                     child: _centerView(),

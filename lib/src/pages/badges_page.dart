@@ -75,7 +75,8 @@ class _BadgesPageState extends State<BadgesPage> {
                 return IconRightWithText(
                   index: index,
                   text: listData[index],
-                  iconRightWidget: Badge( isAndroid: ConstantC.isAndroidPlatform,
+                  iconRightWidget: Badge(
+                    isAndroid: ConstantC.isAndroidPlatform,
                     badgeType: badgeType,
                     badgeValue: "70",
                   ),
@@ -103,7 +104,13 @@ class _BadgesPageState extends State<BadgesPage> {
                 bottom: false,
                 child: Scaffold(
                   backgroundColor: Colors.white,
-                  //appBar:_appBar(),
+                  appBar: AppBar(
+                    backgroundColor: Color.fromRGBO(36, 41, 46, 1),
+                    title: Text(
+                      "Badges",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                   body: Container(
                     color: Colors.white,
                     child: _centerView(),

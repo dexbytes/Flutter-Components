@@ -67,7 +67,13 @@ class _ActionSheetPageState extends State<ActionSheetPage> {
             child: SafeArea(
                 bottom: false,
                 child: Scaffold(
-                  //appBar:_appBar(),
+                  appBar: AppBar(
+                    backgroundColor: Color.fromRGBO(36, 41, 46, 1),
+                    title: Text(
+                      "Action Sheet",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                   body: Container(
                     // color: Colors.white,
                     child: Align(

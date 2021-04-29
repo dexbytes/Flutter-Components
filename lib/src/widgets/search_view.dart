@@ -43,9 +43,9 @@ class _SearchViewState extends State<SearchView>
     } else if (Platform.isAndroid) {
       isAndroid = true;
     }
-    if (isAndroidTemp != null) {
+    /*if (isAndroidTemp != null) {
       isAndroid = isAndroidTemp;
-    }
+    }*/
   }
 
   @override

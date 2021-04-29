@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fullter_main_app/src/api_calling/api_constant.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
@@ -20,18 +18,6 @@ class _DatePickerPageState extends State<DatePickerPage> {
 
   @override
   Widget build(BuildContext context) {
-    //List child head
-    Widget listItemHead({String item, int index}) {
-      Widget tempRowView = Container(
-        color: Colors.blueGrey.withOpacity(0.2),
-        height: 45,
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-        child: Align(alignment: Alignment.centerLeft, child: Text("$item")),
-      );
-      return tempRowView;
-    }
-
     Widget datePicker = ElevatedButton(
       child: Text('Date Picker'),
       onPressed: () {
@@ -109,7 +95,13 @@ class _DatePickerPageState extends State<DatePickerPage> {
                 bottom: false,
                 child: Scaffold(
                   backgroundColor: Colors.white,
-                  //appBar:_appBar(),
+                  appBar: AppBar(
+                    backgroundColor: Color.fromRGBO(36, 41, 46, 1),
+                    title: Text(
+                      "Date Time picker",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                   body: Container(
                     color: Colors.white,
                     child: _centerView(),

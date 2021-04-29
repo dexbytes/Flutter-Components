@@ -47,21 +47,11 @@ class _CustomSwitchPageState extends State<CustomSwitchPage> {
       child: Scaffold(
         backgroundColor: __scaffoldBgColor,
         appBar: AppBar(
-          backgroundColor: _appBarColor,
+          backgroundColor: Color.fromRGBO(36, 41, 46, 1),
           title: Text(
             "CustomSwitch Demo",
             style: TextStyle(color: Colors.white),
           ),
-          actions: [
-            CustomSwitch(
-              value: isSwitchOn,
-              onToggle: (value) {
-                setState(() {
-                  isSwitchOn = value;
-                });
-              },
-            ),
-          ],
         ),
         body: SingleChildScrollView(
           child: Padding(

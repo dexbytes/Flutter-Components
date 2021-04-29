@@ -390,4 +390,89 @@ class AndroidSearchBar extends AnimatedWidget {
   static List mainList = [];
   List searchedList = [];
 
+  */ /*filterData() {
+    List<dynamic> dummyListData = List<dynamic>();
+    if (listDataTemp == null) {
+      listDataTemp = new List();
+      listDataTemp.addAll(widget.listData);
+    }
+    listDataTemp.forEach((item) {
+      if (searchByKeys != null) {
+        try {
+          String jsonString1 = json.encode(item);
+          Map jsonString = json.decode(jsonString1);
+          List searchValues = List();
+          */ /* */ /*String fullName = "full_name";
+                String name = jsonString['$fullName'];
+                String name1 = jsonString['$fullName'];*/ /* */ /*
+          if (innerData != null && innerData) {
+            */ /* */ /*  String jsonString2 = json.encode(jsonString1);
+            Map jsonString3 = json.decode(jsonString2);
+            for(int i=0;i<searchByKeys.length;i++){
+              searchValues.add( jsonString3['${searchByKeys[i]}']);
+            }*/ /* */ /*
+            String jsonString = json.encode(item);
+            if (jsonString
+                .toLowerCase()
+                .contains(widget.searchKeyWord.toLowerCase())) {
+              dummyListData.add(item);
+            }
+          } else {
+            for (int i = 0; i < searchByKeys.length; i++) {
+              String searchKey = searchByKeys[i];
+              List searchKeyList = searchKey.split("#");
+              if(searchKeyList != null && searchKeyList.length > 2){
+
+                if(jsonString.containsKey(searchKeyList[0])){
+                  var innerData =  jsonString[searchKeyList[0]];
+                  // searchValues.add(innerData['${searchKeyList[1]}']);
+                  if(innerData != null && innerData[searchKeyList[1]]){
+                    var innerData1 =  innerData[searchKeyList[1]];
+                    if (innerData1 != null && innerData1['${searchKeyList[2]}']) {
+                      searchValues.add(innerData1['${searchKeyList[2]}']);
+                    }
+                  }
+                }
+              }
+              else if(searchKeyList != null && searchKeyList.length > 1){
+
+                if(jsonString.containsKey(searchKeyList[0])){
+                  var innerData =  jsonString[searchKeyList[0]];
+                  searchValues.add(innerData['${searchKeyList[1]}']);
+                }
+              }
+              else{
+                searchValues.add(jsonString['$searchKey']);
+              }
+
+              // print(jsonString['${searchByKeys[i]}']);
+            }
+          }
+
+          searchValues.map((e) {
+            if (e
+                .toString()
+                .toLowerCase()
+                .startsWith("${widget.searchKeyWord.toLowerCase()}")) {
+              dummyListData.add(item);
+            }
+          }).toList();
+        } catch (e) {
+          print(e);
+        }
+      } else {
+        projectUtil.printP("item :$item");
+        String jsonString = json.encode(item);
+        if (jsonString
+            .toLowerCase()
+            .contains(widget.searchKeyWord.toLowerCase())) {
+          dummyListData.add(item);
+        }
+      }
+    });
+    setState(() {
+      listData.clear();
+      listData.addAll(dummyListData);
+    });
+  }*/ /*
 }*/

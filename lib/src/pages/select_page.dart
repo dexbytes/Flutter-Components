@@ -8,7 +8,8 @@ import 'package:fullter_main_app/src/widgets/badge.dart';
 import 'package:fullter_main_app/src/widgets/icon_right_with_text.dart';
 import 'package:fullter_main_app/src/widgets/labeled_check_box.dart';
 import 'package:fullter_main_app/src/widgets/listViewCustom.dart';
-import 'package:fullter_main_app/src/widgets/select_option_view.dart';
+import 'package:fullter_main_app/src/widgets/select_option_alert_view.dart';
+import 'package:fullter_main_app/src/widgets/select_option_bottom_sheet_view.dart';
 
 class SelectPage extends StatefulWidget {
   SelectPage({Key key}) : super(key: key);
@@ -28,15 +29,13 @@ class _SelectPageState extends State<SelectPage> {
   @override
   Widget build(BuildContext context) {
     listData = [
-      "Followers",
-      "Like",
-      "Share",
-      "Completed",
-      "Warning",
+      "Pet",
+      "Gaming",
       "Notification",
-      "Unread"
-          "Draft",
-      "Deleted"
+      "Operating System",
+      "Music",
+      "Month",
+      "Year"
     ];
     //Center View
     Widget _centerView() {
@@ -57,25 +56,70 @@ class _SelectPageState extends State<SelectPage> {
               listData: listData,
               listViewType: ListViewType.LIST_CUSTOM_ROW_ITEMS,
               tileWidget: ({singleRowData, index}) {
-                BadgeType badgeType = BadgeType.FOLLOWERS;
+                List<MenuItemModelAlertSelect> listOfData = [
+                  MenuItemModelAlertSelect(itemName: "Cat"),
+                  MenuItemModelAlertSelect(itemName: "Dog")
+                ];
                 if (index == 1) {
-                  badgeType = BadgeType.LIKE;
-                } else if (index == 2) {
-                  badgeType = BadgeType.SHARE;
+                  listOfData = [
+                    MenuItemModelAlertSelect(itemName: "Playstation"),
+                    MenuItemModelAlertSelect(itemName: "NAS"),
+                    MenuItemModelAlertSelect(itemName: "Sega Saturn"),
+                    MenuItemModelAlertSelect(itemName: "Cricket"),
+                  ];
                 } else if (index == 3) {
-                  badgeType = BadgeType.COMPLETED;
+                  listOfData = [
+                    MenuItemModelAlertSelect(itemName: "DOS"),
+                    MenuItemModelAlertSelect(itemName: "Linux"),
+                    MenuItemModelAlertSelect(itemName: "MAC"),
+                    MenuItemModelAlertSelect(itemName: "Windows-7"),
+                    MenuItemModelAlertSelect(itemName: "Windows-8"),
+                    MenuItemModelAlertSelect(itemName: "Windows-10"),
+                  ];
                 } else if (index == 4) {
-                  badgeType = BadgeType.WARNINGS;
+                  listOfData = [
+                    MenuItemModelAlertSelect(itemName: "Green day"),
+                    MenuItemModelAlertSelect(itemName: "Pearl jam"),
+                    MenuItemModelAlertSelect(itemName: "Nirvana"),
+                  ];
                 } else if (index == 5) {
-                  badgeType = BadgeType.NOTIFICATION;
+                  listOfData = [
+                    MenuItemModelAlertSelect(itemName: "Jan"),
+                    MenuItemModelAlertSelect(itemName: "Feb"),
+                    MenuItemModelAlertSelect(itemName: "Mar"),
+                    MenuItemModelAlertSelect(itemName: "Apr"),
+                    MenuItemModelAlertSelect(itemName: "May"),
+                  ];
                 } else if (index == 6) {
-                  badgeType = BadgeType.UNREAD;
-                } else if (index == 7) {
-                  badgeType = BadgeType.DRAFT;
-                } else {
-                  badgeType = BadgeType.DELETED;
+                  listOfData = [
+                    MenuItemModelAlertSelect(itemName: "1989"),
+                    MenuItemModelAlertSelect(itemName: "1990"),
+                    MenuItemModelAlertSelect(itemName: "1991"),
+                    MenuItemModelAlertSelect(itemName: "1991"),
+                    MenuItemModelAlertSelect(itemName: "1992"),
+                    MenuItemModelAlertSelect(itemName: "1993"),
+                    MenuItemModelAlertSelect(itemName: "1994"),
+                    MenuItemModelAlertSelect(itemName: "1995"),
+                    MenuItemModelAlertSelect(itemName: "1996"),
+                  ];
                 }
-                return SelectOptionView(textLabel: "${listData[index]}");
+
+                return index == 2
+                    ? SelectOptionBottomSheetView(
+                        isAndroid: ConstantC.isAndroidPlatform,
+                        textLabel: "${listData[index]}",
+                        itemList: [
+                          MenuItemModelBottomSheet(itemName: "Enable"),
+                          MenuItemModelBottomSheet(itemName: "Mute"),
+                          MenuItemModelBottomSheet(itemName: "Mute for a week"),
+                          MenuItemModelBottomSheet(itemName: "Mute for year")
+                        ],
+                      )
+                    : SelectOptionAlertView(
+                        isAndroid: ConstantC.isAndroidPlatform,
+                        textLabel: "${listData[index]}",
+                        itemList: listOfData,
+                      );
               },
             )
           ],

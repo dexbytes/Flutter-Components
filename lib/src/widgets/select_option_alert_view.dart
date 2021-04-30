@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-typedef SelectedCallBack = Function({int index});
+typedef SelectedAlertCallBack = Function({int index});
 
-class SelectOptionView extends StatefulWidget {
+class SelectOptionAlertView extends StatefulWidget {
   final String text;
   final String textLabel;
   final TextStyle selectionOptionTextStyle;
   final Widget iconWidget;
-  final List<String> itemList;
+  final List<MenuItemModelAlertSelect> itemList;
   final bool isAndroid;
-  final SelectedCallBack selectedCallBack;
+  final SelectedAlertCallBack selectedCallBack;
   final int
       preSelectedIndex; //Pre selected index if we want show pre selected index from list it by default -1 means no menu selected
-  SelectOptionView({
+  SelectOptionAlertView({
     Key key,
     this.text,
     this.textLabel = "",
@@ -21,22 +21,12 @@ class SelectOptionView extends StatefulWidget {
     this.selectedCallBack,
     this.iconWidget,
     this.preSelectedIndex = -1,
-    this.itemList = const [
-      "Followers",
-      "Like",
-      "Share",
-      "Completed",
-      "Warning",
-      "Notification",
-      "Unread"
-          "Draft",
-      "Deleted"
-    ],
+    @required this.itemList,
     this.selectionOptionTextStyle,
   }) : super(key: key);
 
   @override
-  _SelectOptionViewState createState() => _SelectOptionViewState(
+  _SelectOptionAlertViewState createState() => _SelectOptionAlertViewState(
       selectionOptionTextStyle: selectionOptionTextStyle,
       itemList: itemList,
       isAndroid: isAndroid,
@@ -44,15 +34,15 @@ class SelectOptionView extends StatefulWidget {
       preSelectedIndex: preSelectedIndex);
 }
 
-class _SelectOptionViewState extends State<SelectOptionView> {
+class _SelectOptionAlertViewState extends State<SelectOptionAlertView> {
   final TextStyle selectionOptionTextStyle;
   final Widget iconWidget;
-  final List<String> itemList;
+  final List<MenuItemModelAlertSelect> itemList;
   final bool isAndroid;
   final int
       preSelectedIndex; //Pre selected index if we want show pre selected index from list it by default -1 means no menu selected
-  String selectedItem = "Selected";
-  _SelectOptionViewState({
+  String selectedItem = "";
+  _SelectOptionAlertViewState({
     this.isAndroid = false,
     this.iconWidget,
     this.preSelectedIndex = -1,
@@ -116,7 +106,7 @@ class _SelectOptionViewState extends State<SelectOptionView> {
                 if (widget.selectedCallBack != null) {
                   widget.selectedCallBack(index: value);
                 }
-                String itemSelected = itemList[value];
+                String itemSelected = itemList[value].itemName;
                 setState(() {
                   selectedItem = itemSelected;
                 });
@@ -140,13 +130,114 @@ class _SelectOptionViewState extends State<SelectOptionView> {
   }
 }
 
-//Selected menu call back function type
+//******************* Model ***** Start ********************
+class MenuItemModelAlertSelect {
+  String itemName;
+  bool isSelected;
+  String itemId;
+  MenuItemModelAlertSelect(
+      {@required this.itemName, this.isSelected = false, this.itemId = "0"});
+}
+//******************* Model ***** End ***********************
+
+//****************** Menu List ****** Start ********************
+typedef MenuItemListRowCallback = Function(
+    {MenuItemModelAlertSelect singleRowData});
+
+class MenuItemListView extends StatefulWidget {
+  final List<MenuItemModelAlertSelect> itemList;
+  final SelectedAlertCallBack selectedMenuCallBack;
+  final double childRowHeight;
+  final MenuItemListRowCallback rowView;
+
+  MenuItemListView({
+    Key key,
+    this.itemList,
+    this.selectedMenuCallBack,
+    this.rowView,
+    this.childRowHeight = 40.0,
+  }) : super(key: key);
+  @override
+  _MenuItemListViewState createState() =>
+      _MenuItemListViewState(itemListTemp: itemList);
+}
+
+class _MenuItemListViewState extends State<MenuItemListView> {
+  List<MenuItemModelAlertSelect> itemList = [];
+  int lastSelectedIndex = -1;
+  _MenuItemListViewState(
+      {List<MenuItemModelAlertSelect> itemListTemp = const []}) {
+    itemList.addAll(itemListTemp);
+    int i = 0;
+    itemList.map((rowData) {
+      if (rowData.isSelected) {
+        MenuItemModelAlertSelect mMenuItemModel = itemList[i];
+        // mMenuItemModel.isSelected = false;
+        //itemList[i] = mMenuItemModel;
+        lastSelectedIndex = i;
+      }
+      i++;
+    }).toList();
+  }
+  //Item Tab
+  void onItemTab(int index) {
+    // if this item isn't selected yet, "isSelected": false -> true
+    // If this item already is selected: "isSelected": true -> false
+    setState(() {
+      if (lastSelectedIndex == -1) {
+        lastSelectedIndex = index;
+      } else {
+        if (lastSelectedIndex != index) {
+          itemList[lastSelectedIndex].isSelected = false;
+          lastSelectedIndex = index;
+        } else if (lastSelectedIndex == index) {
+          lastSelectedIndex = -1;
+        }
+      }
+      itemList[index].isSelected = !itemList[index].isSelected;
+    });
+    //Return selected index
+    if (widget.selectedMenuCallBack != null && itemList[index].isSelected) {
+      widget.selectedMenuCallBack(index: index);
+      //itemList[lastSelectedIndex].isSelected = false;
+    } else {
+      widget.selectedMenuCallBack(index: -1);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: itemList.length,
+      itemBuilder: (BuildContext ctx, index) {
+        return Container(
+          height: widget.childRowHeight,
+          child: Card(
+              color: Colors.transparent,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
+              child: InkWell(
+                onTap: () {
+                  onItemTab(index);
+                },
+                child: widget.rowView != null
+                    ? widget.rowView(singleRowData: itemList[index])
+                    : Container(),
+              )),
+        );
+      },
+    );
+  }
+}
+//****************** Menu List ****** End ********************
+
+//***************************  Alert View *******************
 typedef ContextCallback = Function(BuildContext alertContext);
 
 class ConfirmationAlert {
   BuildContext context;
   String alertTitle;
-  String message;
   String positiveActionText;
   String negativeActionText;
   TextStyle textStylePositiveActionIos;
@@ -158,9 +249,8 @@ class ConfirmationAlert {
   Function callBackYes;
   ContextCallback noCallback;
   bool isAndroid;
-  List<String> itemList;
+  List<MenuItemModelAlertSelect> itemList;
   double childRowHeight = 40.0;
-
   double popUpIdemHeight = 0.0;
   //Function onSelection;
   static int selectedIndex = -1;
@@ -171,14 +261,12 @@ class ConfirmationAlert {
       this.alertTitle = "Alert",
       this.positiveActionText = "Yes",
       this.negativeActionText = "No",
-      this.message = "This is confirmation alert",
       this.textStylePositiveActionIos,
       this.textStyleNegativeActionIos,
       this.itemList = const [],
       this.callBackYes,
       this.isAndroid = false,
-      this.noCallback})
-      : assert(message != null) {
+      this.noCallback}) {
     if (selectedIndex != -1) {
       selectedIndexLocal = selectedIndex;
     }
@@ -190,35 +278,58 @@ class ConfirmationAlert {
     }
     confirmationAlert();
   }
-
   Future<bool> confirmationAlert() {
-    Widget customList = ListView.separated(
-        separatorBuilder: (context, index) => Divider(
-              color: Colors.transparent,
-              height: 0.0,
-              indent: 0.0,
-              endIndent: 0.0,
-            ),
-        //controller: scrollController,
-        //padding: listViewEdgeInsets,
-        physics: AlwaysScrollableScrollPhysics(),
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        itemCount: itemList.length,
-        itemBuilder: (context, i) {
-          String menuName = itemList[i];
-          Widget tempRowView1 = Container(
-            height: childRowHeight,
-            child: GestureDetector(
-                onTap: () {
-                  selectedIndexLocal = i;
-                },
-                child: Center(child: Text(menuName))),
-          );
-          Widget tempRowView = tempRowView1;
-          return tempRowView;
-        });
+    Widget iOSView({String menuName, bool isSelected = false}) {
+      TextStyle mTextStyle = TextStyle(
+          color: isSelected ? CupertinoColors.activeBlue : Colors.black);
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            menuName,
+            style: mTextStyle,
+          ),
+          !isSelected
+              ? Container()
+              : Icon(CupertinoIcons.checkmark_alt,
+                  color: CupertinoColors.activeBlue)
+        ],
+      );
+    }
 
+    Widget androidView({String menuName, bool isSelected = false}) {
+      TextStyle mTextStyle = TextStyle(
+          color: /*isSelected ? CupertinoColors.activeBlue :*/ Colors.black);
+      return Row(
+        children: [
+          isSelected
+              ? Icon(Icons.radio_button_on, color: CupertinoColors.activeBlue)
+              : Icon(Icons.radio_button_off,
+                  color: CupertinoColors.inactiveGray),
+          SizedBox(
+            width: 15,
+          ),
+          Text(
+            menuName,
+            style: mTextStyle,
+          )
+        ],
+      );
+    }
+
+    Widget customList = MenuItemListView(
+      rowView: ({MenuItemModelAlertSelect singleRowData}) {
+        return isAndroid
+            ? androidView(
+                menuName: singleRowData.itemName,
+                isSelected: singleRowData.isSelected)
+            : iOSView(
+                menuName: singleRowData.itemName,
+                isSelected: singleRowData.isSelected);
+      },
+      itemList: itemList,
+      selectedMenuCallBack: ({index}) => selectedIndexLocal = index,
+    );
     return showDialog(
         barrierColor: Colors.transparent,
         context: this.context,
@@ -231,7 +342,10 @@ class ConfirmationAlert {
                   title: new Text(this.alertTitle,
                       style:
                           new TextStyle(color: Colors.black54, fontSize: 20.0)),
-                  content: customList,
+                  content: Container(
+                    child: customList,
+                    height: popUpIdemHeight,
+                  ),
                   actions: <Widget>[
                     TextButton(
                       child: buildTextNegativeAction(),
@@ -243,7 +357,10 @@ class ConfirmationAlert {
                     TextButton(
                       child: buildTextPositiveAction(),
                       onPressed: () {
-                        this.callBackYes(alertContext);
+                        selectedIndex = selectedIndexLocal;
+                        if (selectedIndex != -1) {
+                          this.callBackYes(selectedIndex);
+                        }
                         Navigator.pop(alertContext);
                       },
                     )
@@ -317,3 +434,4 @@ class ConfirmationAlert {
     return textView;
   }
 }
+//*************** Alert View ***** End **************

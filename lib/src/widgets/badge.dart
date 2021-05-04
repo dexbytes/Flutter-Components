@@ -43,7 +43,7 @@ class Badge extends StatelessWidget {
     if (Platform.isIOS) {
       isAndroid = false;
     } else if (Platform.isAndroid) {
-      isAndroid = false;
+      isAndroid = true;
     }*/
 
     // Badge

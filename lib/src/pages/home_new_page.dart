@@ -18,6 +18,7 @@ import 'package:fullter_main_app/src/pages/divider_thumnail_list_page.dart';
 import 'package:fullter_main_app/src/pages/floating_button_page.dart';
 import 'package:fullter_main_app/src/pages/item_list_page.dart';
 import 'package:fullter_main_app/src/pages/custom_switch_page.dart';
+import 'package:fullter_main_app/src/pages/tab_bar_page.dart';
 import 'package:fullter_main_app/src/pages/search_view_page.dart';
 import 'package:fullter_main_app/src/pages/select_page.dart';
 import 'package:fullter_main_app/src/pages/toolbar_page.dart';
@@ -64,6 +65,7 @@ class _MyHomePageState extends State<HomeNewPage>
     ScreenListModel(screen: PopoverPage(), title: "PopOver "),
     ScreenListModel(
         screen: DividerThumbnailListPage(), title: "Thumbnail List"),
+    ScreenListModel(screen: TabBarPage(), title: "Tab Bar"),
     ScreenListModel(screen: SelectPage(), title: "Select"),
     ScreenListModel(screen: ToolBarPage(), title: "ToolBar"),
     ScreenListModel(screen: SearchViewPage(), title: "Search"),

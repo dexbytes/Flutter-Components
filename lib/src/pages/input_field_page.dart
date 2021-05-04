@@ -17,7 +17,6 @@ class InputFiledPage extends StatefulWidget {
 }
 
 class _InputFiledPageState extends State<InputFiledPage> {
-  List<String> listData = [];
   TextEditingController nameController = new TextEditingController();
   String errorMessages;
   @override
@@ -28,18 +27,6 @@ class _InputFiledPageState extends State<InputFiledPage> {
 
   @override
   Widget build(BuildContext context) {
-    listData = [
-      "Followers",
-      "Like",
-      "Share",
-      "Completed",
-      "Warning",
-      "Notification",
-      "Unread"
-          "Draft",
-      "Deleted"
-    ];
-
     //Password floating input field
     Widget _buildPassword() {
       return InputFieldWidget(
@@ -127,7 +114,13 @@ class _InputFiledPageState extends State<InputFiledPage> {
                 bottom: false,
                 child: Scaffold(
                   backgroundColor: Colors.white,
-                  //appBar:_appBar(),
+                  appBar: AppBar(
+                    backgroundColor: Color.fromRGBO(36, 41, 46, 1),
+                    title: Text(
+                      "Input Field",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                   body: Container(
                     color: Colors.white,
                     child: _centerView(),

@@ -1,14 +1,8 @@
-import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fullter_main_app/src/api_calling/api_constant.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
-import 'package:fullter_main_app/src/widgets/badge.dart';
-import 'package:fullter_main_app/src/widgets/button_clear_with_outline.dart';
-import 'package:fullter_main_app/src/widgets/button_solid.dart';
-import 'package:fullter_main_app/src/widgets/button_solid_with_outline.dart';
 import 'package:fullter_main_app/src/widgets/card_view.dart';
-import 'package:fullter_main_app/src/widgets/dividerListCustom.dart';
 
 class CardPage extends StatefulWidget {
   CardPage({Key key}) : super(key: key);

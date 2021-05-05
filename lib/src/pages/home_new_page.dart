@@ -26,13 +26,7 @@ import 'package:fullter_main_app/src/pages/toolbar_page.dart';
 import 'package:fullter_main_app/src/pages/popover_page.dart';
 import 'package:fullter_main_app/src/pages/radio_page.dart';
 import 'package:fullter_main_app/src/widgets/DraggableFloatingActionButton.dart';
-import 'package:fullter_main_app/src/widgets/alerts/confirmation_alert.dart';
-import 'package:fullter_main_app/src/widgets/alerts/inform_alert.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
-import 'package:fullter_main_app/src/widgets/action_bottom_sheet_modal.dart';
-import 'package:fullter_main_app/src/widgets/floating_action_bubble.dart';
-import 'package:fullter_main_app/src/widgets/labeled_check_box.dart';
-import 'package:fullter_main_app/src/widgets/labeled_check_box_flexible_width.dart';
 
 class HomeNewPage extends StatefulWidget {
   HomeNewPage({Key key}) : super(key: key);
@@ -45,9 +39,6 @@ class _MyHomePageState extends State<HomeNewPage>
   DraggableFloatingActionButtonController
       mDraggableFloatingActionButtonController =
       DraggableFloatingActionButtonController();
-  bool _isSelected = false;
-  Animation<double> _animation;
-  AnimationController _animationController;
   List<ScreenListModel> screenList = [
     ScreenListModel(screen: ActionSheetPage(), title: "Action Sheet"),
     ScreenListModel(screen: AlertPage(), title: "Alert"),
@@ -75,23 +66,11 @@ class _MyHomePageState extends State<HomeNewPage>
 
   @override
   void initState() {
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 260),
-    );
-
-    final curvedAnimation = CurvedAnimation(
-        curve: Curves.bounceInOut, parent: _animationController);
-    _animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
-
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    /* final ThemeData theme = Theme.of(context);
-    final ColorScheme colorScheme = theme.colorScheme;*/
-
     //Back Press
     _onBackPressed() {
       if (Platform.isAndroid) {
@@ -164,14 +143,6 @@ class _MyHomePageState extends State<HomeNewPage>
                                 }),
                           ),
                         ),
-                        /*Align(
-                          alignment: Alignment.topCenter,
-                          child: AndroidIosCheckbox(
-                            onChanged: () {
-                              setState(() {});
-                            },
-                          ),
-                        ),*/
                         DraggableFloatingActionButton(
                             controller:
                                 mDraggableFloatingActionButtonController,
@@ -192,92 +163,7 @@ class _MyHomePageState extends State<HomeNewPage>
                               color: ConstantC.isAndroidPlatform
                                   ? Colors.green
                                   : Colors.yellow,
-                            ) /*,
-                            childSelected: new Icon(
-                              Icons.wb_incandescent,
-                              color: Colors.green,
-                            )*/
-                            ),
-                        // Align(
-                        //   alignment: Alignment.bottomRight,
-                        //   child: FloatingActionBubble(
-                        //     // Menu items
-                        //     items: <Bubble>[
-                        //       // Floating action menu item
-                        //       Bubble(
-                        //         title: "Settings",
-                        //         iconColor: Colors.white,
-                        //         bubbleColor: Colors.blue,
-                        //         icon: Icons.settings,
-                        //         titleStyle: TextStyle(
-                        //             fontSize: 16, color: Colors.white),
-                        //         onPress: () {
-                        //           _animationController.reverse();
-                        //         },
-                        //       ),
-                        //       // Floating action menu item
-                        //       Bubble(
-                        //         title: "Profile",
-                        //         iconColor: Colors.white,
-                        //         bubbleColor: Colors.blue,
-                        //         icon: Icons.people,
-                        //         titleStyle: TextStyle(
-                        //             fontSize: 16, color: Colors.white),
-                        //         onPress: () {
-                        //           _animationController.reverse();
-                        //         },
-                        //       ),
-                        //       /*//Floating action menu item
-                        //       Bubble(
-                        //         title: "Home",
-                        //         iconColor: Colors.white,
-                        //         bubbleColor: Colors.blue,
-                        //         icon: Icons.home,
-                        //         titleStyle:
-                        //             TextStyle(fontSize: 16, color: Colors.white),
-                        //         onPress: () {
-                        //           _animationController.reverse();
-                        //         },
-                        //       ),
-                        //       Bubble(
-                        //         title: "Home",
-                        //         iconColor: Colors.white,
-                        //         bubbleColor: Colors.blue,
-                        //         icon: Icons.home,
-                        //         titleStyle:
-                        //             TextStyle(fontSize: 16, color: Colors.white),
-                        //         onPress: () {
-                        //           _animationController.reverse();
-                        //         },
-                        //       ),
-                        //       Bubble(
-                        //         title: "Home",
-                        //         iconColor: Colors.white,
-                        //         bubbleColor: Colors.blue,
-                        //         icon: Icons.home,
-                        //         titleStyle:
-                        //             TextStyle(fontSize: 16, color: Colors.white),
-                        //         onPress: () {
-                        //           _animationController.reverse();
-                        //         },
-                        //       ),*/
-                        //     ],
-                        //
-                        //     // animation controller
-                        //     animation: _animation,
-                        //
-                        //     // On pressed change animation state
-                        //     onPress: _animationController.isCompleted
-                        //         ? _animationController.reverse
-                        //         : _animationController.forward,
-                        //
-                        //     // Floating Action button Icon color
-                        //     iconColor: Colors.white,
-                        //
-                        //     // Flaoting Action button Icon
-                        //     iconData: Icons.favorite,
-                        //   ),
-                        // )
+                            )),
                       ],
                     ),
                   ),

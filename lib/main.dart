@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fullter_main_app/src/widgets/alerts/confirmation_alert.dart';
-import 'package:fullter_main_app/src/widgets/drag/drag_size_fill_new.dart';
+import 'package:fullter_main_app/src/widgets/drag/drag_size_fill.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: "Flutter Component",
       home: Scaffold(
         //appBar: AppBar(title: Text("Flutter Component")),
-        body: Demo(),
+        body: MyStatelessWidget(),
       ),
     );
   }
@@ -29,14 +28,20 @@ class MyStatelessWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              ConfirmationAlert(
-                  context: context,
-                  noCallback: (alertContext) {},
-                  callBackYes: (alertContext) {});
-            },
-            child: Text("Confirmation"),
+          ResizableWidget(
+            manipulatingBallColor: Colors.red,
+            child: Container(),
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          ResizableWidget(
+            isShowGrid: true,
+            isShowXAxisNumberMarking: false,
+            isShowYAxisNumberMarking: false,
+            widgetBgColor: Colors.red.shade50,
+            manipulatingBallColor: Colors.orange,
+            child: Container(),
           )
         ],
       ),

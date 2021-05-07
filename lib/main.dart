@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fullter_main_app/src/pages/home_new_page.dart';
 import 'package:fullter_main_app/src/widgets/alerts/confirmation_alert.dart';
 
 void main() => runApp(MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: "Flutter Component",
       home: Scaffold(
         //appBar: AppBar(title: Text("Flutter Component")),
-        body: MyStatelessWidget(),
+        body: HomeNewPage(),
       ),
     );
   }

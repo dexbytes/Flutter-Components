@@ -217,6 +217,11 @@ class _CupertinoPickerState extends State<CupertinoPicker> {
     }
   }
 
+  void playRemoteFile() {
+    /*AudioPlayer player = new AudioPlayer();
+    player.play("https://bit.ly/2CH50TO");*/
+  }
+
   @override
   void didUpdateWidget(CupertinoPicker oldWidget) {
     if (widget.scrollController != null && oldWidget.scrollController == null) {

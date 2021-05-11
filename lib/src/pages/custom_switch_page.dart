@@ -1,14 +1,9 @@
-import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fullter_main_app/src/api_calling/api_constant.dart';
 import 'package:fullter_main_app/src/widgets/DraggableFloatingActionButton.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
-import 'package:fullter_main_app/src/widgets/badge.dart';
 import 'package:fullter_main_app/src/widgets/custom_switch.dart';
-import 'package:fullter_main_app/src/widgets/icon_right_with_text.dart';
-import 'package:fullter_main_app/src/widgets/labeled_check_box.dart';
-import 'package:fullter_main_app/src/widgets/listViewCustom.dart';
 
 class CustomSwitchPage extends StatefulWidget {
   CustomSwitchPage({Key key}) : super(key: key);

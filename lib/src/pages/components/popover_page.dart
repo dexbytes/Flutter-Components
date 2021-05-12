@@ -58,14 +58,14 @@ class _PopoverPageState extends State<PopoverPage> {
             key: btnKey,
             icon: Icon(Icons.access_time),
             onPressed: () {
-              maxColumn();
+              popupMenu();
             },
           ),
           IconButton(
             key: btnKey2,
             icon: Icon(Icons.memory),
             onPressed: () {
-              maxColumn();
+              popupMenu();
             },
           )
         ],
@@ -83,7 +83,7 @@ class _PopoverPageState extends State<PopoverPage> {
                     //key: btnKey,
                     child: GestureDetector(
                         onTap: () {
-                          maxColumn(btnKeyObj: btnKey3, maxColumn: 1);
+                          popupMenu(btnKeyObj: btnKey3, maxColumn: 1);
                         },
                         child:
                             Container(key: btnKey3, child: Text('Show Menu'))),
@@ -95,7 +95,7 @@ class _PopoverPageState extends State<PopoverPage> {
                     alignment: Alignment.bottomRight,
                     child: GestureDetector(
                         onTap: () {
-                          maxColumn(btnKeyObj: btnKey4, maxColumn: 2);
+                          popupMenu(btnKeyObj: btnKey4, maxColumn: 2);
                         },
                         child: Container(key: btnKey4, child: Text('Me'))),
                   ),
@@ -144,7 +144,7 @@ class _PopoverPageState extends State<PopoverPage> {
     Scaffold.of(context).showSnackBar(snackBar);
   }
 
-  void maxColumn({GlobalKey btnKeyObj, int maxColumn = 1}) {
+  void popupMenu({GlobalKey btnKeyObj, int maxColumn = 1}) {
     if (btnKeyObj == null) {
       btnKeyObj = btnKey;
     }

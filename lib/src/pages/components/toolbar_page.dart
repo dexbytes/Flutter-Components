@@ -94,7 +94,7 @@ class _ToolBarPageState extends State<ToolBarPage> {
                   appBarBgColor: Colors.red,
                   titleStyle: TextStyle(color: Colors.white),
                   context: context,
-                  title: "Danger",
+                  title: "DangerDanger",
                   appBarLeftIcons: Icon(
                     Icons.star,
                     color: Colors.white,
@@ -106,7 +106,21 @@ class _ToolBarPageState extends State<ToolBarPage> {
                         Icons.menu_outlined,
                         color: Colors.black,
                       ),
-                    )
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 10.0),
+                      child: Icon(
+                        Icons.menu_outlined,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 10.0),
+                      child: Icon(
+                        Icons.menu_outlined,
+                        color: Colors.black,
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(

@@ -4,29 +4,29 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-abstract class MenuItemProvider {
+abstract class MenuItemProviderSingleChild {
   String get menuTitle;
-  dynamic get menuItemInfo;
-  // Widget get menuImage;
+  Widget get menuChildWidget;
   TextStyle get menuTextStyle;
   TextAlign get menuTextAlign;
 }
 
-class MenuItem extends MenuItemProvider {
-  //Widget image;
+class MenuItemSingleChild extends MenuItemProviderSingleChild {
+  Widget childWidget;
   String title;
-  dynamic itemInfo;
+  var userInfo;
   TextStyle textStyle;
   TextAlign textAlign;
 
-  MenuItem(
+  MenuItemSingleChild(
       {this.title,
-      /* this.image,*/ this.itemInfo,
+      this.childWidget,
+      this.userInfo,
       this.textStyle,
       this.textAlign});
 
   @override
-  dynamic get menuItemInfo => itemInfo;
+  Widget get menuChildWidget => childWidget;
 
   @override
   String get menuTitle => title;
@@ -41,16 +41,16 @@ class MenuItem extends MenuItemProvider {
 
 enum MenuType { big, oneLine }
 
-typedef MenuClickCallback = Function(MenuItemProvider item);
+typedef MenuClickCallback = Function(MenuItemProviderSingleChild item);
 typedef PopupMenuStateChanged = Function(bool isShow);
 
-class PopupMenu {
+class PopupMenuSingleChild {
   static double itemWidth = 150.0;
   static bool isAndroid = false;
   static double itemHeight = 65.0;
   static var arrowHeight = 10.0;
   OverlayEntry _entry;
-  List<MenuItemProvider> items;
+  List<MenuItemProviderSingleChild> items;
 
   /// row count
   int _row;
@@ -89,7 +89,7 @@ class PopupMenu {
   bool _isShow = false;
   bool get isShow => _isShow;
 
-  PopupMenu(
+  PopupMenuSingleChild(
       {MenuClickCallback onClickMenu,
       BuildContext context,
       VoidCallback onDismiss,
@@ -101,7 +101,7 @@ class PopupMenu {
       double itemHeight = 55.0,
       bool isAndroid = false,
       PopupMenuStateChanged stateChanged,
-      List<MenuItemProvider> items}) {
+      List<MenuItemProviderSingleChild> items}) {
     this.onClickMenu = onClickMenu;
     this.dismissCallback = onDismiss;
     this.stateChanged = stateChanged;
@@ -111,42 +111,46 @@ class PopupMenu {
     this._lineColor = lineColor ?? Colors.grey;
     this._highlightColor = highlightColor ?? Colors.grey;
 
-    PopupMenu.itemWidth = itemWidth;
-    PopupMenu.itemHeight = itemHeight;
+    PopupMenuSingleChild.itemWidth = itemWidth;
+    PopupMenuSingleChild.itemHeight = itemHeight;
 
     //Check device platform
     if (Platform.isIOS) {
-      PopupMenu.isAndroid = false;
+      PopupMenuSingleChild.isAndroid = false;
     } else if (Platform.isAndroid) {
-      PopupMenu.isAndroid = true;
+      PopupMenuSingleChild.isAndroid = true;
     }
 
     //Set Platform accordingly menu selection it should commented for single module
-    PopupMenu.isAndroid = isAndroid;
+    PopupMenuSingleChild.isAndroid = isAndroid;
 
     if (context != null) {
-      PopupMenu.context = context;
+      PopupMenuSingleChild.context = context;
     }
   }
 
-  void show({Rect rect, GlobalKey widgetKey, List<MenuItemProvider> items}) {
+  void show(
+      {Rect rect,
+      GlobalKey widgetKey,
+      List<MenuItemProviderSingleChild> items}) {
     if (rect == null && widgetKey == null) {
       print("'rect' and 'key' can't be both null");
       return;
     }
 
     this.items = items ?? this.items;
-    this._showRect = rect ?? PopupMenu.getWidgetGlobalRect(widgetKey);
+    this._showRect =
+        rect ?? PopupMenuSingleChild.getWidgetGlobalRect(widgetKey);
     this._screenSize = window.physicalSize / window.devicePixelRatio;
     this.dismissCallback = dismissCallback;
 
-    _calculatePosition(PopupMenu.context);
+    _calculatePosition(PopupMenuSingleChild.context);
 
     _entry = OverlayEntry(builder: (context) {
       return buildPopupMenuLayout(_offset);
     });
 
-    Overlay.of(PopupMenu.context).insert(_entry);
+    Overlay.of(PopupMenuSingleChild.context).insert(_entry);
     _isShow = true;
     if (this.stateChanged != null) {
       this.stateChanged(true);
@@ -163,7 +167,7 @@ class PopupMenu {
   void _calculatePosition(BuildContext context) {
     _col = _calculateColCount();
     _row = _calculateRowCount();
-    _offset = _calculateOffset(PopupMenu.context);
+    _offset = _calculateOffset(PopupMenuSingleChild.context);
   }
 
   Offset _calculateOffset(BuildContext context) {
@@ -222,7 +226,7 @@ class PopupMenu {
           child: Stack(
             children: <Widget>[
               // triangle arrow
-              PopupMenu.isAndroid
+              PopupMenuSingleChild.isAndroid
                   ? Container()
                   : Positioned(
                       left: _showRect.left + _showRect.width / 2.0 - 9,
@@ -245,20 +249,20 @@ class PopupMenu {
                   child: Card(
                     borderOnForeground: true,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     color: _backgroundColor,
-                    elevation: PopupMenu.isAndroid ? 4 : 0,
+                    elevation: PopupMenuSingleChild.isAndroid ? 4 : 0,
                     child: Column(
                       children: <Widget>[
                         ClipRRect(
-                            borderRadius: BorderRadius.circular(5.0),
+                            borderRadius: BorderRadius.circular(8),
                             child: Container(
                               width: menuWidth(),
                               height: menuHeight(),
                               decoration: BoxDecoration(
                                   color: _backgroundColor,
-                                  borderRadius: BorderRadius.circular(5.0)),
+                                  borderRadius: BorderRadius.circular(8)),
                               child: Column(
                                 children: _createRows(),
                               ),
@@ -305,14 +309,14 @@ class PopupMenu {
   }
 
   List<Widget> _createRowItems(int row) {
-    List<MenuItemProvider> subItems =
+    List<MenuItemProviderSingleChild> subItems =
         items.sublist(row * _col, min(row * _col + _col, items.length));
     List<Widget> itemWidgets = [];
     int i = 0;
     for (var item in subItems) {
       itemWidgets.add(_createMenuItem(
         item,
-        i < (_col - 1),
+        false,
       ));
       i++;
     }
@@ -376,7 +380,7 @@ class PopupMenu {
     return width / ratio;
   }
 
-  Widget _createMenuItem(MenuItemProvider item, bool showLine) {
+  Widget _createMenuItem(MenuItemProviderSingleChild item, bool showLine) {
     return _MenuItemWidget(
       item: item,
       showLine: showLine,
@@ -387,7 +391,7 @@ class PopupMenu {
     );
   }
 
-  void itemClicked(MenuItemProvider item) {
+  void itemClicked(MenuItemProviderSingleChild item) {
     if (onClickMenu != null) {
       onClickMenu(item);
     }
@@ -400,13 +404,11 @@ class PopupMenu {
       // Remove method should only be called once
       return;
     }
-
     _entry.remove();
     _isShow = false;
     if (dismissCallback != null) {
       dismissCallback();
     }
-
     if (this.stateChanged != null) {
       this.stateChanged(false);
     }
@@ -414,14 +416,14 @@ class PopupMenu {
 }
 
 class _MenuItemWidget extends StatefulWidget {
-  final MenuItemProvider item;
+  final MenuItemProviderSingleChild item;
 
   final bool showLine;
   final Color lineColor;
   final Color backgroundColor;
   final Color highlightColor;
 
-  final Function(MenuItemProvider item) clickCallback;
+  final Function(MenuItemProviderSingleChild item) clickCallback;
 
   _MenuItemWidget(
       {this.item,
@@ -472,8 +474,8 @@ class _MenuItemWidgetState extends State<_MenuItemWidget> {
         }
       },
       child: Container(
-          width: PopupMenu.itemWidth,
-          height: PopupMenu.itemHeight - 2,
+          width: PopupMenuSingleChild.itemWidth,
+          height: PopupMenuSingleChild.itemHeight - 2,
           decoration: BoxDecoration(
               color: color,
               border: Border(
@@ -512,16 +514,18 @@ class _MenuItemWidgetState extends State<_MenuItemWidget> {
     else {*/
     // only text
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: 0),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Material(
           color: Colors.transparent,
-          child: Text(
-            widget.item.menuTitle,
-            style: widget.item.menuTextStyle,
-            textAlign: widget.item.menuTextAlign,
-          ),
+          child: widget.item.menuChildWidget != null
+              ? widget.item.menuChildWidget
+              : Text(
+                  widget.item.menuTitle,
+                  style: widget.item.menuTextStyle,
+                  textAlign: widget.item.menuTextAlign,
+                ),
         ),
       ),
     );

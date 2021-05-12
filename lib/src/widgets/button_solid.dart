@@ -248,7 +248,7 @@ class ButtonSolid extends StatelessWidget {
             ],
           ),
         ),
-        onPressed: () => onPressed,
+        onPressed: () => onPressed(),
       ),
     );
   }

@@ -233,7 +233,7 @@ class ButtonClearWithOutline extends StatelessWidget {
             ],
           ),
         ),
-        onPressed: () => onPressed,
+        onPressed: () => onPressed(),
       ),
     );
   }

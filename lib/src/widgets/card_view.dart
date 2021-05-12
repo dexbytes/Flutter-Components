@@ -92,20 +92,25 @@ class CardView extends StatelessWidget {
             ? margin
             : EdgeInsets.symmetric(
                 horizontal: isAndroid ? 16 : 16, vertical: isAndroid ? 4 : 8),
-        child: Row(
-          mainAxisSize: cardWithType(),
-          /*crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,*/
-          children: [
-            Padding(
-              padding: padding != null
-                  ? padding
-                  : EdgeInsets.symmetric(
-                      horizontal: isAndroid ? 0 : 0,
-                      vertical: isAndroid ? 0 : 0),
-              child: child,
-            ),
-          ],
-        ));
+        child: cardType == CardType.FULL_WIDTH
+            ? Container(
+                width: double.infinity,
+                child: Padding(
+                  padding: padding != null
+                      ? padding
+                      : EdgeInsets.symmetric(
+                          horizontal: isAndroid ? 0 : 0,
+                          vertical: isAndroid ? 0 : 0),
+                  child: child,
+                ),
+              )
+            : Padding(
+                padding: padding != null
+                    ? padding
+                    : EdgeInsets.symmetric(
+                        horizontal: isAndroid ? 0 : 0,
+                        vertical: isAndroid ? 0 : 0),
+                child: child,
+              ));
   }
 }

@@ -26,7 +26,7 @@ class _CardPageState extends State<CardPage> {
         //mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 300.0,
+            width: double.infinity,
             height: 200.0,
             decoration: BoxDecoration(
               image: DecorationImage(

@@ -27,6 +27,11 @@ class InputFieldWidget extends StatelessWidget {
   final int errorMaxLine;
   final KeyboardTypeInputFieldWidget keyboardType;
   final bool isAndroid;
+  final Widget prefixIcon;
+  final Widget suffixIcon;
+  final double prefixIconConstraintSize;
+  final double suffixIconConstraintSize;
+  final bool isHidPassword;
 
   InputFieldWidget(
       {Key key,
@@ -43,8 +48,13 @@ class InputFieldWidget extends StatelessWidget {
       this.focusNode,
       this.errorText,
       this.stackedLabelColor = false,
+      this.isHidPassword = true,
       this.hintTextStyle,
-      this.labelTextStyle})
+      this.prefixIcon,
+      this.suffixIcon,
+      this.labelTextStyle,
+      this.prefixIconConstraintSize = 25,
+      this.suffixIconConstraintSize = 25})
       : super(key: key);
 
   @override
@@ -60,12 +70,12 @@ class InputFieldWidget extends StatelessWidget {
 
     TextStyle labelStyle() {
       TextStyle mLabelStyle = TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
           color: !stackedLabelColor ? Colors.black54 : null);
       if (this.isAndroid) {
         mLabelStyle = TextStyle(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
             color: !stackedLabelColor ? Colors.black54 : null);
       }
@@ -76,10 +86,10 @@ class InputFieldWidget extends StatelessWidget {
 
     TextStyle hintStyle() {
       TextStyle mHintStyle = TextStyle(
-          fontSize: 18, fontWeight: FontWeight.w600, color: Colors.grey);
+          fontSize: 16, fontWeight: FontWeight.w500, color: Colors.grey);
       if (this.isAndroid) {
         mHintStyle = TextStyle(
-            fontSize: 18, fontWeight: FontWeight.w400, color: Colors.grey);
+            fontSize: 16, fontWeight: FontWeight.w400, color: Colors.grey);
       }
       //Override user define style
       mHintStyle = hintTextStyle != null ? hintTextStyle : mHintStyle;
@@ -89,14 +99,27 @@ class InputFieldWidget extends StatelessWidget {
     return TextFormField(
       maxLines: inPutMaxLine,
       focusNode: focusNode,
-      obscureText:
-          keyboardType == KeyboardTypeInputFieldWidget.password ? true : false,
+      obscureText: keyboardType == KeyboardTypeInputFieldWidget.password
+          ? isHidPassword
+          : false,
       decoration: this.isFloatingLabel
           ? InputDecoration(
+              prefixIconConstraints: BoxConstraints(
+                  maxWidth: prefixIcon != null ? prefixIconConstraintSize : 0),
+              suffixIconConstraints: BoxConstraints(
+                  maxWidth: suffixIcon != null ? suffixIconConstraintSize : 0),
+              prefixIcon: prefixIcon != null ? prefixIcon : Container(width: 0),
+              suffixIcon: suffixIcon != null ? suffixIcon : Container(width: 0),
               labelText: this.labelText,
               labelStyle: labelStyle(),
             )
           : InputDecoration(
+              prefixIconConstraints: BoxConstraints(
+                  maxWidth: prefixIcon != null ? prefixIconConstraintSize : 0),
+              suffixIconConstraints: BoxConstraints(
+                  maxWidth: suffixIcon != null ? suffixIconConstraintSize : 0),
+              prefixIcon: prefixIcon != null ? prefixIcon : Container(width: 0),
+              suffixIcon: suffixIcon != null ? suffixIcon : Container(width: 0),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               labelText: this.labelText,
               labelStyle: labelStyle(),

@@ -7,9 +7,7 @@ import 'package:fullter_main_app/src/model/screen_list_model.dart';
 import 'package:fullter_main_app/src/pages/sign_up_form.dart';
 import 'package:fullter_main_app/src/widgets/DraggableFloatingActionButton.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
-
 import 'components_page.dart';
-import 'formpage.dart';
 
 class HomeNewPage extends StatefulWidget {
   HomeNewPage({Key key}) : super(key: key);

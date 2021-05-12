@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fullter_main_app/src/api_calling/api_constant.dart';
 import 'package:fullter_main_app/src/pages/sign_up_forms/card_sign_up_form.dart';
 import 'package:fullter_main_app/src/pages/sign_up_forms/normal_sign_up_form.dart';
+import 'package:fullter_main_app/src/pages/sign_up_forms/sign_up_form_4.dart';
+import 'package:fullter_main_app/src/pages/sign_up_forms/sign_up_form_5.dart';
 import 'package:fullter_main_app/src/pages/sign_up_forms/sign_up_with_social_form.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
 import 'package:fullter_main_app/src/widgets/appbar/tool_bar_widget.dart';
@@ -43,9 +45,11 @@ class _SignUpPageState extends State<SignUpPage> {
         isAndroid: ConstantC.isAndroidPlatform,
         maxColumn: maxColumn,
         items: [
-          MenuItem(title: 'Simple Firm', itemInfo: 1),
-          MenuItem(title: 'Simple With Card', itemInfo: 2),
-          MenuItem(title: 'SignUp With Social', itemInfo: 3),
+          MenuItem(title: 'SignUp Form 1', itemInfo: 1),
+          MenuItem(title: 'SignUp Form 2', itemInfo: 2),
+          MenuItem(title: 'SignUp Form 3', itemInfo: 3),
+          MenuItem(title: 'SignUp Form 4', itemInfo: 4),
+          MenuItem(title: 'SignUp Form 5', itemInfo: 5),
         ],
         onClickMenu: (MenuItemProvider item) {
           setState(() {
@@ -96,21 +100,40 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     //Center View
     Widget _centerView() {
-      Widget childView = Container();
+      Widget childView = Container(
+        margin: EdgeInsets.only(top: 150),
+        child: Center(
+            child: Text(
+          "Coming soon",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+        )),
+      );
       switch (selectedViewType) {
         case 1:
           {
-            childView = NormalSignUpPage();
+            childView = CardSignUpPage();
           }
           break;
         case 2:
           {
-            childView = CardSignUpPage();
+            childView = NormalSignUpPage();
           }
           break;
         case 3:
           {
             childView = CardSignUpWithSocialPage();
+          }
+          break;
+
+        case 4:
+          {
+            childView = CardSignUpPage4();
+          }
+          break;
+
+        case 5:
+          {
+            childView = CardSignUpPage5();
           }
           break;
       }
@@ -176,7 +199,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ],
                   ),
                   body: Container(
-                    color: Colors.white,
+                    color: Colors.white70,
                     child: SingleChildScrollView(
                         physics: BouncingScrollPhysics(),
                         dragStartBehavior: DragStartBehavior.down,

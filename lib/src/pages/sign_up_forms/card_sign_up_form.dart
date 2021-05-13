@@ -29,10 +29,13 @@ class _CardSignUpPageState extends State<CardSignUpPage> {
     Widget _buildPassword() {
       return InputFieldWidget(
         isHidPassword: isHidPasswordConform,
-        prefixIcon: Icon(
-          Icons.lock,
-          size: 25,
-          color: Colors.blue,
+        prefixIcon: Container(
+          padding: EdgeInsets.only(right: 5),
+          child: Icon(
+            Icons.lock,
+            size: 22,
+            color: Colors.blue,
+          ),
         ),
         suffixIcon: GestureDetector(
           onTap: () {
@@ -41,9 +44,9 @@ class _CardSignUpPageState extends State<CardSignUpPage> {
             });
           },
           child: Icon(
-            isHidPasswordConform ? Icons.visibility : Icons.visibility_off,
-            size: 25,
-            color: Colors.blue,
+            !isHidPasswordConform ? Icons.visibility : Icons.visibility_off,
+            size: 22,
+            color: Colors.grey,
           ),
         ),
         keyboardType: KeyboardTypeInputFieldWidget.password,
@@ -51,13 +54,17 @@ class _CardSignUpPageState extends State<CardSignUpPage> {
         labelText: "Password",
       );
     }
+
     Widget _buildPasswordConfirm() {
       return InputFieldWidget(
         isHidPassword: isHidPassword,
-        prefixIcon: Icon(
-          Icons.lock,
-          size: 25,
-          color: Colors.blue,
+        prefixIcon: Container(
+          padding: EdgeInsets.only(right: 5),
+          child: Icon(
+            Icons.lock,
+            size: 22,
+            color: Colors.blue,
+          ),
         ),
         suffixIcon: GestureDetector(
           onTap: () {
@@ -66,9 +73,9 @@ class _CardSignUpPageState extends State<CardSignUpPage> {
             });
           },
           child: Icon(
-            isHidPassword ? Icons.visibility : Icons.visibility_off,
-            size: 25,
-            color: Colors.blue,
+            !isHidPassword ? Icons.visibility : Icons.visibility_off,
+            size: 22,
+            color: Colors.grey,
           ),
         ),
         keyboardType: KeyboardTypeInputFieldWidget.password,
@@ -76,18 +83,23 @@ class _CardSignUpPageState extends State<CardSignUpPage> {
         labelText: "Confirm Password",
       );
     }
+
     Widget _buildEmail() {
       return InputFieldWidget(
-        prefixIcon: Icon(
-          Icons.email,
-          size: 25,
-          color: Colors.blue,
+        prefixIcon: Container(
+          padding: EdgeInsets.only(right: 5),
+          child: Icon(
+            Icons.email,
+            size: 19,
+            color: Colors.blue,
+          ),
         ),
         keyboardType: KeyboardTypeInputFieldWidget.email,
         isFloatingLabel: true,
         labelText: "Email Address",
       );
     }
+
     //Center View
     Widget _centerView() {
       return Container(
@@ -138,12 +150,14 @@ class _CardSignUpPageState extends State<CardSignUpPage> {
                 buttonExpandedType: ButtonExpandedType.BLOCK_WIDTH,
                 buttonSize: ButtonSize.LARGE_SIZE,
                 title: " Sign Up ",
+                height: 50,
               )
             ],
           ),
         ),
       );
     }
+
     return _centerView();
   }
 }

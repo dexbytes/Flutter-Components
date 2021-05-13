@@ -1,28 +1,27 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fullter_main_app/src/api_calling/api_constant.dart';
-import 'package:fullter_main_app/src/pages/sign_up_forms/card_sign_up_form.dart';
-import 'package:fullter_main_app/src/pages/sign_up_forms/normal_sign_up_form.dart';
-import 'package:fullter_main_app/src/pages/sign_up_forms/sign_up_form_4.dart';
-import 'package:fullter_main_app/src/pages/sign_up_forms/sign_up_form_5.dart';
-import 'package:fullter_main_app/src/pages/sign_up_forms/sign_up_with_social_form.dart';
+import 'package:fullter_main_app/src/pages/user_profile/user_profile1.dart';
+import 'package:fullter_main_app/src/pages/user_profile/user_profile2.dart';
+import 'package:fullter_main_app/src/pages/user_profile/user_profile3.dart';
+import 'package:fullter_main_app/src/pages/user_profile/user_profile4.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
 import 'package:fullter_main_app/src/widgets/appbar/tool_bar_widget.dart';
 import 'package:fullter_main_app/src/widgets/pop_over/popup_menu.dart';
 import 'package:fullter_main_app/src/widgets/pop_over/popup_widget_menu.dart';
 
-class SignUpPage extends StatefulWidget {
-  SignUpPage({Key key}) : super(key: key);
+class UserProfilePage extends StatefulWidget {
+  UserProfilePage({Key key}) : super(key: key);
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _UserProfilePageState createState() => _UserProfilePageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _UserProfilePageState extends State<UserProfilePage> {
   GlobalKey moreMenuKey = GlobalKey();
   GlobalKey platformMenuKey = GlobalKey();
   PopupMenuSingleChild menuSingleChild;
   int selectedViewType = 1;
-  String title = "SignUp Form";
+  String title = "User Profile";
   @override
   void dispose() {
     // TODO: implement dispose
@@ -35,11 +34,11 @@ class _SignUpPageState extends State<SignUpPage> {
         isAndroid: ConstantC.isAndroidPlatform,
         maxColumn: maxColumn,
         items: [
-          MenuItem(title: 'SignUp Form', itemInfo: 1),
-          MenuItem(title: 'SignUp Form 2', itemInfo: 2),
-          MenuItem(title: 'SignUp Form 3', itemInfo: 3),
-          MenuItem(title: 'SignUp Form 4', itemInfo: 4),
-          MenuItem(title: 'SignUp Form 5', itemInfo: 5),
+          MenuItem(title: 'User Profile', itemInfo: 1),
+          MenuItem(title: 'User Profile 2', itemInfo: 2),
+          MenuItem(title: 'User Profile 3', itemInfo: 3),
+          MenuItem(title: 'User Profile 4', itemInfo: 4),
+          MenuItem(title: 'User Profile 5', itemInfo: 5),
         ],
         onClickMenu: (MenuItemProvider item) {
           setState(() {
@@ -102,31 +101,31 @@ class _SignUpPageState extends State<SignUpPage> {
       switch (selectedViewType) {
         case 1:
           {
-            childView = CardSignUpPage();
+            childView = UserProfile1();
           }
           break;
         case 2:
           {
-            childView = NormalSignUpPage();
+            childView = UserProfile2();
           }
           break;
         case 3:
           {
-            childView = CardSignUpWithSocialPage();
+            childView = UserProfile3();
           }
           break;
 
         case 4:
           {
-            childView = CardSignUpPage4();
+            childView = UserProfile4();
           }
           break;
 
-        case 5:
+        /* case 5:
           {
             childView = CardSignUpPage5();
           }
-          break;
+          break;*/
       }
 
       return childView;

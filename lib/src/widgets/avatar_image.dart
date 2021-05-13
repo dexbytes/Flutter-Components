@@ -67,72 +67,68 @@ class _AvatarImageState extends State<AvatarImage> {
         print(e);
       }
       if (image != null && image.trim() != "") {
-        return Center(
-            child: new Container(
-                decoration: new BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.blueGrey),
-                height: height,
-                width: width,
-                child: Stack(
-                  children: <Widget>[
-                    (image != null && image.trim().length > 0)
-                        ? ((image.contains('http') || image.contains('https'))
-                            ? Align(
-                                child: (image.contains(
-                                        '.gif') /*|| image.contains('assets-yammer')*/)
-                                    ? circularImageOrNameViewLocal(
-                                        name: name,
-                                        height: height,
-                                        width: width)
-                                    : CachedNetworkImage(
-                                        height: height,
-                                        width: width,
-                                        imageUrl: image,
-                                        imageBuilder:
-                                            (context, imageProvider) =>
-                                                Container(
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.transparent,
-                                            //borderRadius: BorderRadius.all(Radius.circular(height / 2)),
-                                            image: DecorationImage(
-                                              image: imageProvider,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
+        return new Container(
+            decoration: new BoxDecoration(
+                shape: BoxShape.circle, color: Colors.blueGrey),
+            height: height,
+            width: width,
+            child: Stack(
+              children: <Widget>[
+                (image != null && image.trim().length > 0)
+                    ? ((image.contains('http') || image.contains('https'))
+                        ? Align(
+                            child: (image.contains(
+                                    '.gif') /*|| image.contains('assets-yammer')*/)
+                                ? circularImageOrNameViewLocal(
+                                    name: name, height: height, width: width)
+                                : CachedNetworkImage(
+                                    height: height,
+                                    width: width,
+                                    imageUrl: image,
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.transparent,
+                                        //borderRadius: BorderRadius.all(Radius.circular(height / 2)),
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
                                         ),
-                                        placeholder: (context, url) => Center(
-                                          child: Container(
-                                              height: height / 5,
-                                              width: width / 5,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    new AlwaysStoppedAnimation<
-                                                        Color>(Colors.blue),
-                                              )),
-                                        ),
-                                        errorWidget: (context, url, error) =>
-                                            Icon(Icons.error),
                                       ),
-                                alignment: Alignment.center,
-                              )
-                            : image.contains('assets')
-                                ? new CircleAvatar(
-                                    radius: height / 2,
-                                    backgroundImage: /*image.contains('http')?Image.network(image)*/ AssetImage(
-                                        image),
-                                  )
-                                : new CircleAvatar(
-                                    radius: height / 2,
-                                    backgroundImage: /*image.contains('http')?Image.network(image)*/ FileImage(
-                                        File(image)),
-                                  ))
-                        : new CircleAvatar(
-                            radius: height / 2,
-                            backgroundImage: NetworkImage(imageNotFoundC),
+                                    ),
+                                    placeholder: (context, url) => Center(
+                                      child: Container(
+                                          height: height / 5,
+                                          width: width / 5,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                new AlwaysStoppedAnimation<
+                                                    Color>(Colors.blue),
+                                          )),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
+                            alignment: Alignment.center,
                           )
-                  ],
-                )));
+                        : image.contains('assets')
+                            ? new CircleAvatar(
+                                radius: height / 2,
+                                backgroundImage: /*image.contains('http')?Image.network(image)*/ AssetImage(
+                                    image),
+                              )
+                            : new CircleAvatar(
+                                radius: height / 2,
+                                backgroundImage: /*image.contains('http')?Image.network(image)*/ FileImage(
+                                    File(image)),
+                              ))
+                    : new CircleAvatar(
+                        radius: height / 2,
+                        backgroundImage: NetworkImage(imageNotFoundC),
+                      )
+              ],
+            ));
       } else {
         return circularImageOrNameViewLocal(
             name: name, height: height, width: width);

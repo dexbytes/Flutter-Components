@@ -13,6 +13,7 @@ typedef OnChangeInputFieldWidgetCallBack = Function({String value});
 
 class InputFieldWidget extends StatelessWidget {
   final String hintText;
+  final String initialValue;
   final TextStyle hintTextStyle;
   final String labelText;
   final TextStyle labelTextStyle;
@@ -32,6 +33,12 @@ class InputFieldWidget extends StatelessWidget {
   final double prefixIconConstraintSize;
   final double suffixIconConstraintSize;
   final bool isHidPassword;
+  final bool readOnly;
+  final bool enabledEdit;
+  final bool enableInteractiveSelection;
+  final Color enabledBorderColor;
+  final Color focusedBorderColor;
+  final Color borderColor;
 
   InputFieldWidget(
       {Key key,
@@ -41,14 +48,21 @@ class InputFieldWidget extends StatelessWidget {
       this.errorMaxLine = 1,
       this.inPutMaxLine = 1,
       this.isAndroid = false,
+      this.readOnly = false,
+      this.enabledEdit = true,
       this.keyboardType = KeyboardTypeInputFieldWidget.text,
       this.onSave,
       this.onChange,
+      this.enabledBorderColor = Colors.grey,
+      this.focusedBorderColor = Colors.blueAccent,
+      this.borderColor = Colors.grey,
+      this.initialValue,
       this.isFloatingLabel = false,
       this.focusNode,
       this.errorText,
       this.stackedLabelColor = false,
       this.isHidPassword = true,
+      this.enableInteractiveSelection = true,
       this.hintTextStyle,
       this.prefixIcon,
       this.suffixIcon,
@@ -97,6 +111,10 @@ class InputFieldWidget extends StatelessWidget {
     }
 
     return TextFormField(
+      initialValue: initialValue,
+      enabled: enabledEdit,
+      readOnly: readOnly,
+      enableInteractiveSelection: enableInteractiveSelection,
       maxLines: inPutMaxLine,
       focusNode: focusNode,
       obscureText: keyboardType == KeyboardTypeInputFieldWidget.password
@@ -112,7 +130,15 @@ class InputFieldWidget extends StatelessWidget {
               suffixIcon: suffixIcon != null ? suffixIcon : Container(width: 0),
               labelText: this.labelText,
               labelStyle: labelStyle(),
-            )
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: enabledBorderColor),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: focusedBorderColor),
+              ),
+              border: UnderlineInputBorder(
+                borderSide: BorderSide(color: borderColor),
+              ))
           : InputDecoration(
               prefixIconConstraints: BoxConstraints(
                   maxWidth: prefixIcon != null ? prefixIconConstraintSize : 0),
@@ -126,7 +152,16 @@ class InputFieldWidget extends StatelessWidget {
               hintText: hintText,
               hintStyle: hintStyle(),
               hintMaxLines: this.hintMaxLine,
-              errorMaxLines: this.errorMaxLine),
+              errorMaxLines: this.errorMaxLine,
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: enabledBorderColor),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: focusedBorderColor),
+              ),
+              border: UnderlineInputBorder(
+                borderSide: BorderSide(color: borderColor),
+              )),
       validator: (String value) => (value.isEmpty) ? errorText : null,
       onSaved: (String value) {
         if (this.onSave != null) {

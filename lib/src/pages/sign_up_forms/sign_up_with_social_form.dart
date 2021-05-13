@@ -31,10 +31,13 @@ class _CardSignUpWithSocialPageState extends State<CardSignUpWithSocialPage> {
     Widget _buildPassword() {
       return InputFieldWidget(
         isHidPassword: isHidPasswordConform,
-        prefixIcon: Icon(
-          Icons.lock,
-          size: 25,
-          color: Colors.blue,
+        prefixIcon: Container(
+          padding: EdgeInsets.only(right: 5),
+          child: Icon(
+            Icons.lock,
+            size: 24,
+            color: Colors.blue,
+          ),
         ),
         suffixIcon: GestureDetector(
           onTap: () {
@@ -43,9 +46,9 @@ class _CardSignUpWithSocialPageState extends State<CardSignUpWithSocialPage> {
             });
           },
           child: Icon(
-            isHidPasswordConform ? Icons.visibility : Icons.visibility_off,
-            size: 25,
-            color: Colors.blue,
+            !isHidPasswordConform ? Icons.visibility : Icons.visibility_off,
+            size: 22,
+            color: Colors.grey,
           ),
         ),
         keyboardType: KeyboardTypeInputFieldWidget.password,
@@ -57,10 +60,13 @@ class _CardSignUpWithSocialPageState extends State<CardSignUpWithSocialPage> {
     Widget _buildPasswordConfirm() {
       return InputFieldWidget(
         isHidPassword: isHidPassword,
-        prefixIcon: Icon(
-          Icons.lock,
-          size: 25,
-          color: Colors.blue,
+        prefixIcon: Container(
+          padding: EdgeInsets.only(right: 5),
+          child: Icon(
+            Icons.lock,
+            size: 24,
+            color: Colors.blue,
+          ),
         ),
         suffixIcon: GestureDetector(
           onTap: () {
@@ -69,9 +75,9 @@ class _CardSignUpWithSocialPageState extends State<CardSignUpWithSocialPage> {
             });
           },
           child: Icon(
-            isHidPassword ? Icons.visibility : Icons.visibility_off,
-            size: 25,
-            color: Colors.blue,
+            !isHidPassword ? Icons.visibility : Icons.visibility_off,
+            size: 22,
+            color: Colors.grey,
           ),
         ),
         keyboardType: KeyboardTypeInputFieldWidget.password,
@@ -82,10 +88,13 @@ class _CardSignUpWithSocialPageState extends State<CardSignUpWithSocialPage> {
 
     Widget _buildEmail() {
       return InputFieldWidget(
-        prefixIcon: Icon(
-          Icons.email,
-          size: 25,
-          color: Colors.blue,
+        prefixIcon: Container(
+          padding: EdgeInsets.only(right: 5),
+          child: Icon(
+            Icons.email,
+            size: 21,
+            color: Colors.blue,
+          ),
         ),
         keyboardType: KeyboardTypeInputFieldWidget.email,
         isFloatingLabel: true,

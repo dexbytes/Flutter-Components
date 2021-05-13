@@ -45,7 +45,8 @@ class _CardSignUpPage4State extends State<CardSignUpPage4> {
                 : 50,
         inputKeyboardType: InputKeyboardType.password,
         hintText: "Password",
-        placeHolderTextWidget: Text("Password"),
+        placeHolderTextWidget: Text("Password",
+            style: TextStyle(fontSize: 16, color: Colors.black)),
         onTextChange: (value) {},
         onEndEditing: (value) {},
       );
@@ -65,7 +66,8 @@ class _CardSignUpPage4State extends State<CardSignUpPage4> {
             : 50,
         inputKeyboardType: InputKeyboardType.password,
         hintText: "Confirm password",
-        placeHolderTextWidget: Text("Confirm password"),
+        placeHolderTextWidget: Text("Confirm password",
+            style: TextStyle(fontSize: 16, color: Colors.black)),
         onTextChange: (value) {},
         onEndEditing: (value) {},
       );
@@ -83,7 +85,10 @@ class _CardSignUpPage4State extends State<CardSignUpPage4> {
             (errorMessagesEmail != null && errorMessagesEmail != "") ? 65 : 50,
         inputKeyboardType: InputKeyboardType.email,
         hintText: "Email Address",
-        placeHolderTextWidget: Text("Email Address"),
+        placeHolderTextWidget: Text(
+          "Email Address",
+          style: TextStyle(fontSize: 16, color: Colors.black),
+        ),
         onTextChange: (value) {},
         onEndEditing: (value) {},
       );
@@ -108,7 +113,7 @@ class _CardSignUpPage4State extends State<CardSignUpPage4> {
               ),
               Divider(),
               SizedBox(
-                height: 5,
+                height: 10,
               ),
               Form(
                 key: _formKey,
@@ -118,7 +123,13 @@ class _CardSignUpPage4State extends State<CardSignUpPage4> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     _buildEmail(),
+                    SizedBox(
+                      height: 15,
+                    ),
                     _buildPassword(),
+                    SizedBox(
+                      height: 15,
+                    ),
                     _buildPasswordConfirm(),
                   ],
                 ),
@@ -139,6 +150,7 @@ class _CardSignUpPage4State extends State<CardSignUpPage4> {
                 buttonExpandedType: ButtonExpandedType.BLOCK_WIDTH,
                 buttonSize: ButtonSize.LARGE_SIZE,
                 title: " Sign Up ",
+                height: 50,
               )
             ],
           ),

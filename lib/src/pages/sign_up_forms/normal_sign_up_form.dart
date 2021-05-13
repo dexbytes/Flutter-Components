@@ -26,10 +26,13 @@ class _NormalSignUpPageState extends State<NormalSignUpPage> {
     Widget _buildPassword() {
       return InputFieldWidget(
         isHidPassword: isHidPasswordConform,
-        prefixIcon: Icon(
-          Icons.lock,
-          size: 25,
-          color: Colors.blue,
+        prefixIcon: Container(
+          padding: EdgeInsets.only(right: 5),
+          child: Icon(
+            Icons.lock,
+            size: 24,
+            color: Colors.blue,
+          ),
         ),
         suffixIcon: GestureDetector(
           onTap: () {
@@ -38,9 +41,9 @@ class _NormalSignUpPageState extends State<NormalSignUpPage> {
             });
           },
           child: Icon(
-            isHidPasswordConform ? Icons.visibility : Icons.visibility_off,
-            size: 25,
-            color: Colors.blue,
+            !isHidPasswordConform ? Icons.visibility : Icons.visibility_off,
+            size: 22,
+            color: Colors.grey,
           ),
         ),
         keyboardType: KeyboardTypeInputFieldWidget.password,
@@ -52,10 +55,13 @@ class _NormalSignUpPageState extends State<NormalSignUpPage> {
     Widget _buildPasswordConfirm() {
       return InputFieldWidget(
         isHidPassword: isHidPassword,
-        prefixIcon: Icon(
-          Icons.lock,
-          size: 25,
-          color: Colors.blue,
+        prefixIcon: Container(
+          padding: EdgeInsets.only(right: 5),
+          child: Icon(
+            Icons.lock,
+            size: 24,
+            color: Colors.blue,
+          ),
         ),
         suffixIcon: GestureDetector(
           onTap: () {
@@ -64,9 +70,9 @@ class _NormalSignUpPageState extends State<NormalSignUpPage> {
             });
           },
           child: Icon(
-            isHidPassword ? Icons.visibility : Icons.visibility_off,
-            size: 25,
-            color: Colors.blue,
+            !isHidPassword ? Icons.visibility : Icons.visibility_off,
+            size: 22,
+            color: Colors.grey,
           ),
         ),
         keyboardType: KeyboardTypeInputFieldWidget.password,
@@ -77,10 +83,13 @@ class _NormalSignUpPageState extends State<NormalSignUpPage> {
 
     Widget _buildEmail() {
       return InputFieldWidget(
-        prefixIcon: Icon(
-          Icons.email,
-          size: 25,
-          color: Colors.blue,
+        prefixIcon: Container(
+          padding: EdgeInsets.only(right: 5),
+          child: Icon(
+            Icons.email,
+            size: 21,
+            color: Colors.blue,
+          ),
         ),
         keyboardType: KeyboardTypeInputFieldWidget.email,
         isFloatingLabel: true,
@@ -133,6 +142,7 @@ class _NormalSignUpPageState extends State<NormalSignUpPage> {
               buttonExpandedType: ButtonExpandedType.BLOCK_WIDTH,
               buttonSize: ButtonSize.LARGE_SIZE,
               title: " Sign Up ",
+              height: 50,
             )
           ],
         ),

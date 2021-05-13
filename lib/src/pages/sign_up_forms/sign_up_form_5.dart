@@ -108,7 +108,7 @@ class _CardSignUpPage5State extends State<CardSignUpPage5> {
               ),
               Divider(),
               SizedBox(
-                height: 5,
+                height: 10,
               ),
               Form(
                 key: _formKey,

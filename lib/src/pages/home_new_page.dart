@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fullter_main_app/src/api_calling/api_constant.dart';
 import 'package:fullter_main_app/src/model/screen_list_model.dart';
 import 'package:fullter_main_app/src/pages/sign_up_form.dart';
+import 'package:fullter_main_app/src/pages/user_profile_pages.dart';
 import 'package:fullter_main_app/src/widgets/DraggableFloatingActionButton.dart';
 import 'package:fullter_main_app/src/widgets/android_ios_check_box.dart';
 import 'components_page.dart';
@@ -21,7 +22,8 @@ class _HomeNewPageState extends State<HomeNewPage>
       mDraggableFloatingActionButtonController =
       DraggableFloatingActionButtonController();
   List<ScreenListModel> screenList = [
-    ScreenListModel(screen: SignUpPage(), title: "SignUpPages"),
+    ScreenListModel(screen: SignUpPage(), title: "SignUp Forms"),
+    ScreenListModel(screen: UserProfilePage(), title: "User Profiles"),
     ScreenListModel(screen: ComponentsPage(), title: "Components")
   ];
 

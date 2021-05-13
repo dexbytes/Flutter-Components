@@ -33,7 +33,7 @@ class _CardSignUpPageState extends State<CardSignUpPage> {
           padding: EdgeInsets.only(right: 5),
           child: Icon(
             Icons.lock,
-            size: 22,
+            size: 24,
             color: Colors.blue,
           ),
         ),
@@ -62,7 +62,7 @@ class _CardSignUpPageState extends State<CardSignUpPage> {
           padding: EdgeInsets.only(right: 5),
           child: Icon(
             Icons.lock,
-            size: 22,
+            size: 24,
             color: Colors.blue,
           ),
         ),
@@ -90,7 +90,7 @@ class _CardSignUpPageState extends State<CardSignUpPage> {
           padding: EdgeInsets.only(right: 5),
           child: Icon(
             Icons.email,
-            size: 19,
+            size: 21,
             color: Colors.blue,
           ),
         ),

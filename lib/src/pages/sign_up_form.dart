@@ -33,6 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
   GlobalKey platformMenuKey = GlobalKey();
   PopupMenuSingleChild menuSingleChild;
   int selectedViewType = 1;
+  String title = "SignUp Form";
   @override
   void dispose() {
     // TODO: implement dispose
@@ -45,7 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
         isAndroid: ConstantC.isAndroidPlatform,
         maxColumn: maxColumn,
         items: [
-          MenuItem(title: 'SignUp Form 1', itemInfo: 1),
+          MenuItem(title: 'SignUp Form', itemInfo: 1),
           MenuItem(title: 'SignUp Form 2', itemInfo: 2),
           MenuItem(title: 'SignUp Form 3', itemInfo: 3),
           MenuItem(title: 'SignUp Form 4', itemInfo: 4),
@@ -54,6 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
         onClickMenu: (MenuItemProvider item) {
           setState(() {
             selectedViewType = item.menuItemInfo;
+            title = item.menuTitle;
           });
           print('Click menu -> ${item.menuTitle}');
         },
@@ -76,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
         maxColumn: maxColumn,
         items: [
           MenuItemSingleChild(
-              title: 'Simple Firm',
+              title: '',
               childWidget: AndroidIosCheckbox(
                 onChanged: () {
                   setState(() {});
@@ -161,7 +163,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     appBarBgColor: Color.fromRGBO(36, 41, 46, 1),
                     titleStyle: TextStyle(color: Colors.white),
                     context: context,
-                    title: "SignUp Forms",
+                    title: "$title",
                     appBarLeftIcons: Icon(
                       Icons.arrow_back,
                       color: Colors.white,

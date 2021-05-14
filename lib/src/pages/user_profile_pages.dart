@@ -141,7 +141,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
     return WillPopScope(
         onWillPop: ConstantC.isAndroidPlatform ? _onBackPressed : null,
         child: Container(
-            color: Colors.transparent,
+            color: Colors.white,
             child: SafeArea(
                 bottom: false,
                 child: Scaffold(

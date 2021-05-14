@@ -23,27 +23,28 @@ dependencies:
     sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS s .tyle icons.
-  cupertino_icons: ^1.0.2
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.3
   provider: ^5.0.0   # To manage component state
-  shared_preferences: 2.0.3  # Store data in local memory
-  flutter_svg: ^0.19.3 #For svg image use
-  http: 0.12.2 # To Call API
-  timeago: ^3.0.1 # Time Ago
-  device_info: 2.0.0   # Get device info
+  path_provider: ^2.0.1
+  shared_preferences: ^2.0.5  # Store data in local memory
+  flutter_svg: ^0.22.0 #For svg image use
+  http: 0.13.0 # To Call API
+  timeago: ^3.0.2 # Time Ago
+  device_info: ^2.0.0   # Get device info
   get_version: ^0.2.0+1  # Get Application version
-  connectivity: 3.0.2  # Check Status of internet
-  fluttertoast: 7.1.8
-  flutter_local_notifications: 5.0.0-nullsafety.1 #To show notifications when app in foreground
-  flutter_app_badger: ^1.1.2 # To show app badger on app icon
-  firebase_messaging: ^9.0.0 #For notification
-  firebase_analytics: ^7.1.0
-  firebase_core: ^1.0.0 #For firebase
-  firebase_crashlytics: ^1.0.0 #For firebase crashlytics
-  cached_network_image: ^2.5.1
-  flutter_cache_manager: ^2.1.2
+  connectivity: ^3.0.3  # Check Status of internet
+  fluttertoast: 7.1.6 #Used for toast message
+  cached_network_image: ^3.0.0
+  flutter_app_badger: ^1.2.0 # To show app badger on app icon
+  firebase_messaging: ^9.1.3 #For notification
+  firebase_analytics: ^8.0.3
+  firebase_core: ^1.1.0 #For firebase
+  firebase_crashlytics: ^2.0.2 #For firebase crashlytics
+  flutter_local_notifications: 5.0.0+4 #To show notifications when app in foreground
+  flutter_cache_manager: ^3.0.2
   razorpay_flutter: ^1.2.2
-#  draggable_floating_button: ^0.1.1
+
 
 
 dev_dependencies:

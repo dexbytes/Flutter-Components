@@ -124,7 +124,7 @@ class ApiRequestMain {
         }
 
         final response = await http
-            .post(fullUrl, headers: headers, body: bodyData)
+            .post(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         projectUtil.printP("$response");
         //Check response is empty or not
@@ -198,7 +198,7 @@ class ApiRequestMain {
       try {
         String fullUrl = ConstantC.baseUrl + url;
         final response = await http
-            .post(fullUrl, headers: headers, body: bodyData)
+            .post(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         //Check response is empty or not
         if (response != null) {
@@ -265,7 +265,7 @@ class ApiRequestMain {
         }
 
         final response = await http
-            .post(fullUrl, headers: headers, body: bodyData)
+            .post(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         //Check response is empty or not
         if (response != null) {
@@ -360,7 +360,7 @@ class ApiRequestMain {
 
         fullUrl = fullUrl + values;
         final response = await http
-            .get(fullUrl, headers: headers)
+            .get(Uri.parse(fullUrl), headers: headers)
             .timeout(Duration(seconds: readTimeout));
         //Check response is empty or not
         if (response != null) {
@@ -457,7 +457,7 @@ class ApiRequestMain {
           headers.addAll(headers1);
         }
         final response = await http
-            .get(fullUrl, headers: headers)
+            .get(Uri.parse(fullUrl), headers: headers)
             .timeout(Duration(seconds: readTimeout));
         //Check response is empty or not
         if (response != null) {
@@ -533,7 +533,7 @@ class ApiRequestMain {
           headers.addAll(headers1);
         }
         final response = await http
-            .put(fullUrl, headers: headers, body: bodyData)
+            .put(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         //Check response is empty or not
         if (response != null) {
@@ -808,7 +808,7 @@ class ApiRequestMain {
         }
 
         final response = await http
-            .patch(fullUrl, headers: headers, body: bodyData)
+            .patch(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         projectUtil.printP("$response");
         //Check response is empty or not
@@ -892,7 +892,7 @@ class ApiRequestMain {
         }
 
         final response = await http
-            .delete(fullUrl, headers: headers)
+            .delete(Uri.parse(fullUrl), headers: headers)
             .timeout(Duration(seconds: readTimeout));
         projectUtil.printP("$response");
         //Check response is empty or not
@@ -1095,7 +1095,7 @@ class ApiRequestMain {
         }
 
         final response = await http
-            .post(fullUrl,
+            .post(Uri.parse(fullUrl),
             headers: headers,
             body: bodyData,
             encoding: Encoding.getByName('utf-8'))
@@ -1184,7 +1184,7 @@ class ApiRequestMain {
         }
         //final response = await http.post(fullUrl, headers: headers,body:bodyData,encoding: Encoding.getByName('utf-8')).timeout(Duration(seconds: readTimeout));
         final response = await http
-            .post(fullUrl, headers: headers, body: bodyData)
+            .post(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         projectUtil.printP("$response");
         //Check response is empty or not

@@ -11,7 +11,6 @@ import 'package:path/path.dart';
 import 'api_constant.dart';
 import 'package:fullter_main_app/src/all_file_import/app_utils_files_link.dart';
 
-
 //Response call back
 class Response {
   final bool status;
@@ -27,11 +26,11 @@ class Response {
         responseData = json['data'];
 
   Map<String, dynamic> toJson() => {
-    'status': status,
-    'message': message,
-    'statusCode': statusCode,
-    'responseData': responseData,
-  };
+        'status': status,
+        'message': message,
+        'statusCode': statusCode,
+        'responseData': responseData,
+      };
 }
 
 //Basic parser Old version
@@ -100,18 +99,19 @@ class ApiRequestMain {
   String tryAgain = 'Something went wrong please try again';
   var headers = {
     "Content-Type": "application/json",
-    "ACCESS-API-KEY": "Av76BwvWXZ-xK%40VX_EL\$@gr_pj/?W8Ue?=RR&ZtJK6deAkZuzT?Dw#Fv+ST?2?D6f^d\$PBDP",
+    "ACCESS-API-KEY":
+        "Av76BwvWXZ-xK%40VX_EL\$@gr_pj/?W8Ue?=RR&ZtJK6deAkZuzT?Dw#Fv+ST?2?D6f^d\$PBDP",
     "secretKey": "1530fdcb6c56ab01ec97b4bc1a59b727e204aeea"
   };
 
   //Post type request function with input data
   Future<Response> apiRequestPost(
       {Key key,
-        @required String url,
-        @required bodyData,
-        headersTemp,
-        String authorization,
-        bool isLoader}) async {
+      @required String url,
+      @required bodyData,
+      headersTemp,
+      String authorization,
+      bool isLoader}) async {
     //Check Internet connection
     Response isInternetConnected = await checkInternetConnection();
     if (isInternetConnected != null && isInternetConnected.status) {
@@ -124,7 +124,7 @@ class ApiRequestMain {
         }
 
         final response = await http
-            .post(fullUrl, headers: headers, body: bodyData)
+            .post(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         projectUtil.printP("$response");
         //Check response is empty or not
@@ -134,7 +134,7 @@ class ApiRequestMain {
             var responseBody = response.body;
             //Parse message and data from response body
             ParserBasic mParserBasic =
-            ParserBasic.fromJson(json.decode(responseBody));
+                ParserBasic.fromJson(json.decode(responseBody));
             //Check Data is exist or not
             if (mParserBasic != null && mParserBasic.status == true) {
               var data = mParserBasic.data;
@@ -160,7 +160,7 @@ class ApiRequestMain {
           }
         } else {
           Response mResponse =
-          new Response(false, "Please try again ", 1000, null);
+              new Response(false, "Please try again ", 1000, null);
           return mResponse;
         }
       } catch (e) {
@@ -169,7 +169,7 @@ class ApiRequestMain {
               e.runtimeType == TimeoutException) {
             projectUtil.printP("Please check internet connection");
             Response mResponse =
-            new Response(false, checkInternetMessage, -1000, null);
+                new Response(false, checkInternetMessage, -1000, null);
             return mResponse;
           } else {
             projectUtil.printP("Error in requested api: " + e);
@@ -184,8 +184,8 @@ class ApiRequestMain {
       }
     } else {
       projectUtil.printP(appString.noInternetConnection);
-      Response mResponse = new Response(
-          false, appString.noInternetConnection, -1000, null);
+      Response mResponse =
+          new Response(false, appString.noInternetConnection, -1000, null);
       return mResponse;
     }
   }
@@ -198,7 +198,7 @@ class ApiRequestMain {
       try {
         String fullUrl = ConstantC.baseUrl + url;
         final response = await http
-            .post(fullUrl, headers: headers, body: bodyData)
+            .post(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         //Check response is empty or not
         if (response != null) {
@@ -207,7 +207,7 @@ class ApiRequestMain {
             var responseBody = response.body;
             //Parse message and data from response body
             ParserBasic mParserBasic =
-            ParserBasic.fromJson(json.decode(responseBody));
+                ParserBasic.fromJson(json.decode(responseBody));
             //Check Data is exist or not
             if (mParserBasic != null && mParserBasic.status == true) {
               //Check Data is exist or not
@@ -226,7 +226,7 @@ class ApiRequestMain {
           }
         } else {
           Response mResponse =
-          new Response(false, "Please try again ", 1000, null);
+              new Response(false, "Please try again ", 1000, null);
           return mResponse;
         }
       } catch (e) {
@@ -234,7 +234,7 @@ class ApiRequestMain {
             e.runtimeType == TimeoutException) {
           projectUtil.printP("Please check internet connection");
           Response mResponse =
-          new Response(false, checkInternetMessage, -1000, null);
+              new Response(false, checkInternetMessage, -1000, null);
           return mResponse;
         } else {
           projectUtil.printP("Error in requested api: " + e);
@@ -244,8 +244,8 @@ class ApiRequestMain {
       }
     } else {
       projectUtil.printP(" appString.noInternetConnection");
-      Response mResponse = new Response(
-          false, AppString().noInternetConnection, -2000, null);
+      Response mResponse =
+          new Response(false, AppString().noInternetConnection, -2000, null);
       return mResponse;
     }
   }
@@ -265,7 +265,7 @@ class ApiRequestMain {
         }
 
         final response = await http
-            .post(fullUrl, headers: headers, body: bodyData)
+            .post(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         //Check response is empty or not
         if (response != null) {
@@ -275,7 +275,7 @@ class ApiRequestMain {
             //Parse message and data from response body
             projectUtil.printP("$responseBody");
             ParserBasic mParserBasic =
-            ParserBasic.fromJson(json.decode(responseBody));
+                ParserBasic.fromJson(json.decode(responseBody));
             //Check Data is exist or not
             if (mParserBasic != null && mParserBasic.status == true) {
               var data = mParserBasic.data;
@@ -302,7 +302,7 @@ class ApiRequestMain {
           }
         } else {
           Response mResponse =
-          new Response(false, "Please try again ", 1000, null);
+              new Response(false, "Please try again ", 1000, null);
           return mResponse;
         }
       } catch (e) {
@@ -311,7 +311,7 @@ class ApiRequestMain {
           projectUtil.printP("Please check internet connection");
           print("Error in requested api: " + e);
           Response mResponse =
-          new Response(false, checkInternetMessage, -1000, null);
+              new Response(false, checkInternetMessage, -1000, null);
           return mResponse;
         } else {
           projectUtil.printP("Error in requested api: " + e);
@@ -321,8 +321,8 @@ class ApiRequestMain {
         }
       }
     } else {
-      Response mResponse = new Response(
-          false, appString.noInternetConnection, -2000, null);
+      Response mResponse =
+          new Response(false, appString.noInternetConnection, -2000, null);
       return mResponse;
     }
   }
@@ -360,7 +360,7 @@ class ApiRequestMain {
 
         fullUrl = fullUrl + values;
         final response = await http
-            .get(fullUrl, headers: headers)
+            .get(Uri.parse(fullUrl), headers: headers)
             .timeout(Duration(seconds: readTimeout));
         //Check response is empty or not
         if (response != null) {
@@ -369,7 +369,7 @@ class ApiRequestMain {
             var responseBody = response.body;
             //Parse message and data from response body
             ParserBasic mParserBasic =
-            ParserBasic.fromJson(json.decode(responseBody));
+                ParserBasic.fromJson(json.decode(responseBody));
             //Check Data is exist or not
             if (mParserBasic != null && mParserBasic.status != null) {
               var data = mParserBasic;
@@ -395,7 +395,7 @@ class ApiRequestMain {
           }
         } else {
           Response mResponse =
-          new Response(false, "Please try again", 1000, null);
+              new Response(false, "Please try again", 1000, null);
           return mResponse;
         }
       } catch (e) {
@@ -403,7 +403,7 @@ class ApiRequestMain {
             e.runtimeType == TimeoutException) {
           projectUtil.printP("Please check internet connection");
           Response mResponse =
-          new Response(false, checkInternetMessage, -1000, null);
+              new Response(false, checkInternetMessage, -1000, null);
           return mResponse;
         } else {
           projectUtil.printP("Error in requested api: " + e);
@@ -413,8 +413,8 @@ class ApiRequestMain {
       }
     } else {
       projectUtil.printP(appString.noInternetConnection);
-      Response mResponse = new Response(
-          false, appString.noInternetConnection, -2000, null);
+      Response mResponse =
+          new Response(false, appString.noInternetConnection, -2000, null);
       return mResponse;
     }
   }
@@ -457,7 +457,7 @@ class ApiRequestMain {
           headers.addAll(headers1);
         }
         final response = await http
-            .get(fullUrl, headers: headers)
+            .get(Uri.parse(fullUrl), headers: headers)
             .timeout(Duration(seconds: readTimeout));
         //Check response is empty or not
         if (response != null) {
@@ -496,7 +496,7 @@ class ApiRequestMain {
           }
         } else {
           Response mResponse =
-          new Response(false, "Please try again", 1000, null);
+              new Response(false, "Please try again", 1000, null);
           return mResponse;
         }
       } catch (e) {
@@ -504,7 +504,7 @@ class ApiRequestMain {
             e.runtimeType == TimeoutException) {
           projectUtil.printP("Please check internet connection");
           Response mResponse =
-          new Response(false, checkInternetMessage, -1000, null);
+              new Response(false, checkInternetMessage, -1000, null);
           return mResponse;
         } else {
           projectUtil.printP("Error in requested api: " + e);
@@ -514,8 +514,8 @@ class ApiRequestMain {
       }
     } else {
       projectUtil.printP(appString.noInternetConnection);
-      Response mResponse = new Response(
-          false, appString.noInternetConnection, -1000, null);
+      Response mResponse =
+          new Response(false, appString.noInternetConnection, -1000, null);
       return mResponse;
     }
   }
@@ -533,7 +533,7 @@ class ApiRequestMain {
           headers.addAll(headers1);
         }
         final response = await http
-            .put(fullUrl, headers: headers, body: bodyData)
+            .put(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         //Check response is empty or not
         if (response != null) {
@@ -542,7 +542,7 @@ class ApiRequestMain {
             var responseBody = response.body;
             //Parse message and data from response body
             ParserBasic mParserBasic =
-            ParserBasic.fromJson(json.decode(responseBody));
+                ParserBasic.fromJson(json.decode(responseBody));
             //Check Data is exist or not
             if (mParserBasic != null && mParserBasic.status != null) {
               var data = mParserBasic.data;
@@ -568,7 +568,7 @@ class ApiRequestMain {
           }
         } else {
           Response mResponse =
-          new Response(false, "Please try again", 1000, null);
+              new Response(false, "Please try again", 1000, null);
           return mResponse;
         }
       } catch (e) {
@@ -586,8 +586,8 @@ class ApiRequestMain {
       }
     } else {
       projectUtil.printP(appString.noInternetConnection);
-      Response mResponse = new Response(
-          false, appString.noInternetConnection, -2000, null);
+      Response mResponse =
+          new Response(false, appString.noInternetConnection, -2000, null);
       return mResponse;
     }
   }
@@ -595,11 +595,11 @@ class ApiRequestMain {
   //update profile image and other media files with text data
   Future<StreamedResponse> apiRequestMultipartAuthorizeWithBodyData(
       {Key key,
-        String url,
-        Map<String, String> bodyData,
-        imageFile,
-        bool isLoader,
-        String authorization}) async {
+      String url,
+      Map<String, String> bodyData,
+      imageFile,
+      bool isLoader,
+      String authorization}) async {
     //Check Internet connection
     Response isInternetConnected = await checkInternetConnection();
     if (isInternetConnected != null && isInternetConnected.status) {
@@ -666,11 +666,11 @@ class ApiRequestMain {
   //
   Future<StreamedResponse> apiRequestMultipartAuthorizeWithBodyDataPatch(
       {Key key,
-        String url,
-        Map<String, String> bodyData,
-        imageFile,
-        bool isLoader,
-        String authorization}) async {
+      String url,
+      Map<String, String> bodyData,
+      imageFile,
+      bool isLoader,
+      String authorization}) async {
     //Check Internet connection
     Response isInternetConnected = await checkInternetConnection();
     if (isInternetConnected != null && isInternetConnected.status) {
@@ -760,7 +760,7 @@ class ApiRequestMain {
           if (imageFile != null) {
             // open a bytestream
             var stream =
-            new http.ByteStream(DelegatingStream(imageFile.openRead()));
+                new http.ByteStream(DelegatingStream(imageFile.openRead()));
             // get file length
             var length = await imageFile.length();
             // multipart that takes file
@@ -790,11 +790,11 @@ class ApiRequestMain {
   //Post type request function with input data
   Future<Response> apiRequestpatch(
       {Key key,
-        @required String url,
-        @required bodyData,
-        headersTemp,
-        String authorization,
-        bool isLoader}) async {
+      @required String url,
+      @required bodyData,
+      headersTemp,
+      String authorization,
+      bool isLoader}) async {
     //Check Internet connection
     Response isInternetConnected = await checkInternetConnection();
 
@@ -808,7 +808,7 @@ class ApiRequestMain {
         }
 
         final response = await http
-            .patch(fullUrl, headers: headers, body: bodyData)
+            .patch(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         projectUtil.printP("$response");
         //Check response is empty or not
@@ -818,7 +818,7 @@ class ApiRequestMain {
             var responseBody = response.body;
             //Parse message and data from response body
             ParserBasic mParserBasic =
-            ParserBasic.fromJson(json.decode(responseBody));
+                ParserBasic.fromJson(json.decode(responseBody));
             //Check Data is exist or not
             if (mParserBasic != null && mParserBasic.status == true) {
               var data = mParserBasic.data;
@@ -844,7 +844,7 @@ class ApiRequestMain {
           }
         } else {
           Response mResponse =
-          new Response(false, "Please try again ", 1000, null);
+              new Response(false, "Please try again ", 1000, null);
           return mResponse;
         }
       } catch (e) {
@@ -853,7 +853,7 @@ class ApiRequestMain {
               e.runtimeType == TimeoutException) {
             projectUtil.printP("Please check internet connection");
             Response mResponse =
-            new Response(false, checkInternetMessage, -1000, null);
+                new Response(false, checkInternetMessage, -1000, null);
             return mResponse;
           } else {
             projectUtil.printP("Error in requested api: " + e);
@@ -868,8 +868,8 @@ class ApiRequestMain {
       }
     } else {
       projectUtil.printP(appString.noInternetConnection);
-      Response mResponse = new Response(
-          false, appString.noInternetConnection, -1000, null);
+      Response mResponse =
+          new Response(false, appString.noInternetConnection, -1000, null);
       return mResponse;
     }
   }
@@ -877,9 +877,9 @@ class ApiRequestMain {
   //Delete type request function with input data
   Future<Response> apiRequestDelete(
       {Key key,
-        @required String url,
-        String authorization,
-        bool isLoader}) async {
+      @required String url,
+      String authorization,
+      bool isLoader}) async {
     //Check Internet connection
     Response isInternetConnected = await checkInternetConnection();
     if (isInternetConnected != null && isInternetConnected.status) {
@@ -892,7 +892,7 @@ class ApiRequestMain {
         }
 
         final response = await http
-            .delete(fullUrl, headers: headers)
+            .delete(Uri.parse(fullUrl), headers: headers)
             .timeout(Duration(seconds: readTimeout));
         projectUtil.printP("$response");
         //Check response is empty or not
@@ -902,7 +902,7 @@ class ApiRequestMain {
             var responseBody = response.body;
             //Parse message and data from response body
             ParserBasic mParserBasic =
-            ParserBasic.fromJson(json.decode(responseBody));
+                ParserBasic.fromJson(json.decode(responseBody));
             //Check Data is exist or not
             if (mParserBasic != null && mParserBasic.status == true) {
               // var data = mParserBasic.data;
@@ -928,7 +928,7 @@ class ApiRequestMain {
           }
         } else {
           Response mResponse =
-          new Response(false, "Please try again ", 1000, null);
+              new Response(false, "Please try again ", 1000, null);
           return mResponse;
         }
       } catch (e) {
@@ -937,7 +937,7 @@ class ApiRequestMain {
               e.runtimeType == TimeoutException) {
             projectUtil.printP("Please check internet connection");
             Response mResponse =
-            new Response(false, checkInternetMessage, -1000, null);
+                new Response(false, checkInternetMessage, -1000, null);
             return mResponse;
           } else {
             projectUtil.printP("Error in requested api: " + e);
@@ -952,8 +952,8 @@ class ApiRequestMain {
       }
     } else {
       projectUtil.printP(appString.noInternetConnection);
-      Response mResponse = new Response(
-          false, appString.noInternetConnection, -1000, null);
+      Response mResponse =
+          new Response(false, appString.noInternetConnection, -1000, null);
       return mResponse;
     }
   }
@@ -961,11 +961,11 @@ class ApiRequestMain {
   //Update single image
   Future<StreamedResponse> apiRequestMultipartAuthorizeWithoutBodyDataPatch(
       {Key key,
-        String url,
-        imageKey,
-        imageFile,
-        bool isLoader,
-        String authorization}) async {
+      String url,
+      imageKey,
+      imageFile,
+      bool isLoader,
+      String authorization}) async {
     //Check Internet connection
     Response isInternetConnected = await checkInternetConnection();
     if (isInternetConnected != null && isInternetConnected.status) {
@@ -984,7 +984,7 @@ class ApiRequestMain {
           if (imageFile != null) {
             // open a bytestream
             var stream =
-            new http.ByteStream(DelegatingStream(imageFile.openRead()));
+                new http.ByteStream(DelegatingStream(imageFile.openRead()));
             // get file length
             var length = await imageFile.length();
             // multipart that takes file
@@ -1018,7 +1018,7 @@ class ApiRequestMain {
         if (response.body != null) {
           var responseBody = response.body;
           ParserBasic mParserBasic =
-          ParserBasic.fromJson(json.decode(responseBody));
+              ParserBasic.fromJson(json.decode(responseBody));
           //Check Data is exist or not
           if (mParserBasic != null && mParserBasic.status != null) {
             var data = mParserBasic.data;
@@ -1057,7 +1057,7 @@ class ApiRequestMain {
     if (connectivityResult == ConnectivityResult.mobile) {
       projectUtil.printP("Connected to Mobile Network");
       Response mResponse =
-      new Response(true, "Connected to Mobile Network", 1000, null);
+          new Response(true, "Connected to Mobile Network", 1000, null);
       return mResponse;
       //return true;
     } else if (connectivityResult == ConnectivityResult.wifi) {
@@ -1067,18 +1067,18 @@ class ApiRequestMain {
     } else {
       projectUtil.printP("Unable to connect. Please Check Internet Connection");
       Response mResponse =
-      new Response(false, "Please check internet connection", 1000, null);
+          new Response(false, "Please check internet connection", 1000, null);
       return mResponse;
     }
   }
 
   Future<Response> apiRequestPostSendFCMNotification(
       {Key key,
-        @required String url,
-        @required bodyData,
-        headersTemp,
-        String authorization,
-        bool isLoader}) async {
+      @required String url,
+      @required bodyData,
+      headersTemp,
+      String authorization,
+      bool isLoader}) async {
     //Check Internet connection
     Response isInternetConnected = await checkInternetConnection();
     if (isInternetConnected != null && isInternetConnected.status) {
@@ -1095,10 +1095,10 @@ class ApiRequestMain {
         }
 
         final response = await http
-            .post(fullUrl,
-            headers: headers,
-            body: bodyData,
-            encoding: Encoding.getByName('utf-8'))
+            .post(Uri.parse(fullUrl),
+                headers: headers,
+                body: bodyData,
+                encoding: Encoding.getByName('utf-8'))
             .timeout(Duration(seconds: readTimeout));
         projectUtil.printP("$response");
         //Check response is empty or not
@@ -1108,7 +1108,7 @@ class ApiRequestMain {
             var responseBody = response.body;
             //Parse message and data from response body
             ParserBasic mParserBasic =
-            ParserBasic.fromJson(json.decode(responseBody));
+                ParserBasic.fromJson(json.decode(responseBody));
             //Check Data is exist or not
             if (mParserBasic != null && mParserBasic.status == true) {
               var data = mParserBasic.data;
@@ -1134,7 +1134,7 @@ class ApiRequestMain {
           }
         } else {
           Response mResponse =
-          new Response(false, "Please try again ", 1000, null);
+              new Response(false, "Please try again ", 1000, null);
           return mResponse;
         }
       } catch (e) {
@@ -1143,7 +1143,7 @@ class ApiRequestMain {
               e.runtimeType == TimeoutException) {
             projectUtil.printP("Please check internet connection");
             Response mResponse =
-            new Response(false, checkInternetMessage, -1000, null);
+                new Response(false, checkInternetMessage, -1000, null);
             return mResponse;
           } else {
             projectUtil.printP("Error in requested api: " + e);
@@ -1158,19 +1158,19 @@ class ApiRequestMain {
       }
     } else {
       projectUtil.printP(appString.noInternetConnection);
-      Response mResponse = new Response(
-          false, appString.noInternetConnection, -1000, null);
+      Response mResponse =
+          new Response(false, appString.noInternetConnection, -1000, null);
       return mResponse;
     }
   }
 
   Future<Response> apiRequestPostSendFCMNotificationOurServer(
       {Key key,
-        @required String url,
-        @required bodyData,
-        headersTemp,
-        String authorization,
-        bool isLoader}) async {
+      @required String url,
+      @required bodyData,
+      headersTemp,
+      String authorization,
+      bool isLoader}) async {
     //Check Internet connection
     Response isInternetConnected = await checkInternetConnection();
     if (isInternetConnected != null && isInternetConnected.status) {
@@ -1182,9 +1182,9 @@ class ApiRequestMain {
           var headers1 = {HttpHeaders.authorizationHeader: authorization};
           headers.addAll(headers1);
         }
-        //final response = await http.post(fullUrl, headers: headers,body:bodyData,encoding: Encoding.getByName('utf-8')).timeout(Duration(seconds: readTimeout));
+        //final response = await http.post(Uri.parse(fullUrl), headers: headers,body:bodyData,encoding: Encoding.getByName('utf-8')).timeout(Duration(seconds: readTimeout));
         final response = await http
-            .post(fullUrl, headers: headers, body: bodyData)
+            .post(Uri.parse(fullUrl), headers: headers, body: bodyData)
             .timeout(Duration(seconds: readTimeout));
         projectUtil.printP("$response");
         //Check response is empty or not
@@ -1194,7 +1194,7 @@ class ApiRequestMain {
             var responseBody = response.body;
             //Parse message and data from response body
             ParserBasic mParserBasic =
-            ParserBasic.fromJson(json.decode(responseBody));
+                ParserBasic.fromJson(json.decode(responseBody));
             //Check Data is exist or not
             if (mParserBasic != null && mParserBasic.status == true) {
               var data = mParserBasic.data;
@@ -1220,7 +1220,7 @@ class ApiRequestMain {
           }
         } else {
           Response mResponse =
-          new Response(false, "Please try again ", 1000, null);
+              new Response(false, "Please try again ", 1000, null);
           return mResponse;
         }
       } catch (e) {
@@ -1229,7 +1229,7 @@ class ApiRequestMain {
               e.runtimeType == TimeoutException) {
             projectUtil.printP("Please check internet connection");
             Response mResponse =
-            new Response(false, checkInternetMessage, -1000, null);
+                new Response(false, checkInternetMessage, -1000, null);
             return mResponse;
           } else {
             projectUtil.printP("Error in requested api: " + e);
@@ -1244,12 +1244,9 @@ class ApiRequestMain {
       }
     } else {
       projectUtil.printP(appString.noInternetConnection);
-      Response mResponse = new Response(
-          false, appString.noInternetConnection, -1000, null);
+      Response mResponse =
+          new Response(false, appString.noInternetConnection, -1000, null);
       return mResponse;
     }
   }
-
-
 }
-

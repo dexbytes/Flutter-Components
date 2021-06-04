@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fullter_main_app/src/api_calling/api_constant.dart';
 import 'package:fullter_main_app/src/model/screen_list_model.dart';
+import 'package:fullter_main_app/src/pages/photo_gallery_page.dart';
+import 'package:fullter_main_app/src/pages/side_menu_pages.dart';
 import 'package:fullter_main_app/src/pages/sign_up_form.dart';
 import 'package:fullter_main_app/src/pages/user_profile_pages.dart';
 import 'package:fullter_main_app/src/widgets/DraggableFloatingActionButton.dart';
@@ -24,6 +26,8 @@ class _HomeNewPageState extends State<HomeNewPage>
   List<ScreenListModel> screenList = [
     ScreenListModel(screen: SignUpPage(), title: "SignUp Forms"),
     ScreenListModel(screen: UserProfilePage(), title: "User Profiles"),
+    ScreenListModel(screen: SideMenuPage(), title: "Side Menu"),
+    ScreenListModel(screen: PhotoGalleryMainPage(), title: "Photo Gallery"),
     ScreenListModel(screen: ComponentsPage(), title: "Components")
   ];
 

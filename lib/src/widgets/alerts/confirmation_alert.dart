@@ -36,7 +36,7 @@ class ConfirmationAlert {
       this.isAndroid = false,
       this.noCallback})
       : assert(message != null) {
-    //Check device platform
+    //Check specific device platform
     if (Platform.isIOS) {
       this.isAndroid = false;
     } else if (Platform.isAndroid) {
@@ -44,39 +44,45 @@ class ConfirmationAlert {
     }
     confirmationAlert();
   }
+
+  // Render conformation alert.
   Future<bool> confirmationAlert() {
     return showDialog(
         barrierColor: Colors.transparent,
         context: this.context,
         barrierDismissible: false,
         builder: (alertContext) {
-          //mContext = context1;
+          // Check device platform
           return this.isAndroid
+          // This will work for android platform
               ? AlertDialog(
-                  // backgroundColor: Colors.transparent,
                   title: new Text(this.alertTitle,
                       style: new TextStyle(
                           color: AppColors().lightBlack, fontSize: 20.0)),
                   content: new Text(this.message),
                   actions: <Widget>[
+                    // Text button for perform No.
                     TextButton(
                       child: buildTextNegativeAction(),
                       onPressed: () {
+                        // Use callback to perform relevant action
                         this.noCallback(alertContext);
                         Navigator.pop(alertContext);
                       },
                     ),
+                    // Text button for perform No.
                     TextButton(
                       child: buildTextPositiveAction(),
                       onPressed: () {
+                        // Use callback to perform relevant action
                         this.callBackYes(alertContext);
                         Navigator.pop(alertContext);
                       },
                     )
                   ],
                 )
+              // This will work for iOS platform
               : CupertinoAlertDialog(
-                  // backgroundColor: Colors.transparent,
                   title: new Text(this.alertTitle,
                       style: new TextStyle(
                           color: AppColors().lightBlack, fontSize: 20.0)),
@@ -85,6 +91,7 @@ class ConfirmationAlert {
                     TextButton(
                       child: buildTextNegativeAction(),
                       onPressed: () {
+                        // Use callback to perform relevant action
                         this.noCallback(alertContext);
                         Navigator.pop(alertContext);
                       },
@@ -92,6 +99,7 @@ class ConfirmationAlert {
                     TextButton(
                       child: buildTextPositiveAction(),
                       onPressed: () {
+                        // Use callback to perform relevant action
                         this.callBackYes(alertContext);
                         Navigator.pop(alertContext);
                       },
@@ -103,9 +111,7 @@ class ConfirmationAlert {
 
   Text buildTextPositiveAction({Color textColorItem}) {
     Text textView;
-    /* if (textColorItem == null) {
-      textColorItem = isAndroid ? Colors.black : Colors.blue;
-    }*/
+
     //Ios
     textView = textStylePositiveActionIos != null
         ? Text("$positiveActionText", style: textStylePositiveActionIos)
@@ -119,11 +125,10 @@ class ConfirmationAlert {
     return textView;
   }
 
+  // Build platform platform specific navigation text
   Text buildTextNegativeAction({Color textColorItem}) {
     Text textView;
-    /* if (textColorItem == null) {
-      textColorItem = isAndroid ? Colors.black : Colors.blue;
-    }*/
+
     //Ios
     textView = textStyleNegativeActionIos != null
         ? Text("$negativeActionText", style: textStyleNegativeActionIos)

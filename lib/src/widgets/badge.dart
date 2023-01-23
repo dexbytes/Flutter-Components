@@ -38,14 +38,6 @@ class Badge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*bool isAndroid = false;
-    //Check device platform
-    if (Platform.isIOS) {
-      isAndroid = false;
-    } else if (Platform.isAndroid) {
-      isAndroid = false;
-    }*/
-
     // Badge
     BoxDecoration badgeDecorationStyle(
         {double borderWith = 1, double borderRadius = 15}) {
@@ -97,7 +89,7 @@ class Badge extends StatelessWidget {
           color: badgeBackgroundColorTemp);
     }
 
-    //Badge text style
+    //Set Badge text style
     Text buildTextBadge({String badgeValue}) {
       Text textView;
       Color badgeValueColor = Colors.white;

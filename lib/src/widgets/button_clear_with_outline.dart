@@ -61,6 +61,7 @@ class ButtonClearWithOutline extends StatelessWidget {
       isAndroid = true;
     }*/
 
+    // Set border color
     Color borderColorGet() {
       Color borderColorTemp = Color(0xff3880ff);
       switch (this.buttonColorType) {
@@ -233,6 +234,7 @@ class ButtonClearWithOutline extends StatelessWidget {
             ],
           ),
         ),
+        // This is a callback function to perform an action.
         onPressed: () => onPressed,
       ),
     );

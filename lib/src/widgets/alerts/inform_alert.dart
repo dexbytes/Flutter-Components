@@ -36,6 +36,7 @@ class InfoAlert {
     }*/
     infoAlert();
   }
+  // To show alert dialog box
   Future<bool> infoAlert() {
     return showDialog(
         barrierColor: Colors.transparent,
@@ -43,6 +44,7 @@ class InfoAlert {
         barrierDismissible: false,
         builder: (alertContext) {
           //mContext = context1;
+          // Check platform to show platform specific dialog.
           return this.isAndroid
               ? AlertDialog(
                   // backgroundColor: Colors.transparent,
@@ -52,8 +54,10 @@ class InfoAlert {
                   content: new Text(this.message),
                   actions: <Widget>[
                     TextButton(
+                      // Use text action
                       child: buildTextPositiveAction(),
                       onPressed: () {
+                        // Callback function to perform an action.
                         this.callBackConfirm(alertContext);
                         Navigator.pop(alertContext);
                       },
@@ -70,6 +74,7 @@ class InfoAlert {
                     TextButton(
                       child: buildTextPositiveAction(),
                       onPressed: () {
+                        Callback function to perform an action.
                         this.callBackConfirm(alertContext);
                         Navigator.pop(alertContext);
                       },
@@ -78,7 +83,7 @@ class InfoAlert {
                 );
         });
   }
-
+  // Build text action according to platform.
   Text buildTextPositiveAction({Color textColorItem}) {
     Text textView;
     //Ios

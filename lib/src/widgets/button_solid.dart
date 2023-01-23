@@ -64,6 +64,7 @@ class ButtonSolid extends StatelessWidget {
       isAndroid = true;
     }*/
 
+    // Set button property accordingly.
     Color fillColor() {
       Color badgeBackgroundColorTemp = Color(0xff3880ff);
       switch (this.buttonColorType) {
@@ -101,7 +102,7 @@ class ButtonSolid extends StatelessWidget {
       return badgeBackgroundColorTemp;
     }
 
-    //ButtonSolid text style
+    //Set Solid Button text style
     Text buildTextBadge({String buttonValue}) {
       Text textView;
       double textSize = buttonSize == ButtonSize.LARGE_SIZE ? 18 : 16;
@@ -118,7 +119,7 @@ class ButtonSolid extends StatelessWidget {
       return textView;
     }
 
-    // ButtonSolid width/height
+    // ButtonSolid width/height accordingly.
     BoxConstraints constraints() {
       double widthTemp = double.maxFinite;
       double heightTemp = 47.0;
@@ -238,16 +239,11 @@ class ButtonSolid extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              /*Icon(
-    newicon!=null ? newicon : Icons.help,
-    color: iconColor!=null ? iconColor: Colors.amber,
-    ),SizedBox(
-                width: 8,
-              ),*/
               buildTextBadge(buttonValue: title),
             ],
           ),
         ),
+          // This is a callback function to perform an action.
         onPressed: () => onPressed,
       ),
     );

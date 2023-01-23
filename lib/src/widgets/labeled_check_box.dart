@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -34,22 +33,15 @@ class LabeledCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*bool isAndroid = false;
-    //Check device platform
-    if(Platform.isIOS){
-      isAndroid = false;
-    }
-    else if(Platform.isAndroid){
-      isAndroid = true;
-    }*/
-    //Disabled color
+    //Set Disabled color for checkbox and checkbox text
     Color textDisabledColor = Color(0xFFefefef);
     Color checkBoxDisableColor = Color(0xFFefefef);
+    // Set checkbox disable color according to platform
     Color checkFillDisableColor = isAndroid
         ? (disabled ? Color(0xFFefefef) : Color(0xFFffffff))
         : Color(0xFFffffff);
     Color checkDisableColor = Color(0xFFffffff);
-    //Ios check box custome
+    //Ios custom check box.
     Widget iosCheckBox = Container(
       margin: EdgeInsets.symmetric(vertical: 5),
       padding: EdgeInsets.all(

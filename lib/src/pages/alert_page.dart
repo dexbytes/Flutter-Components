@@ -14,7 +14,7 @@ class AlertPage extends StatefulWidget {
 class _AlertPageState extends State<AlertPage> {
   @override
   Widget build(BuildContext context) {
-    //Center View
+    // Rendering of alert.
     Widget _centerView() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 10),

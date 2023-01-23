@@ -67,6 +67,7 @@ class ButtonSolidWithOutLine extends StatelessWidget {
       isAndroid = true;
     }
 
+    // Set badget background color
     Color fillColor() {
       Color badgeBackgroundColorTemp = Color(0xff3880ff);
       switch (this.buttonColorType) {
@@ -126,21 +127,6 @@ class ButtonSolidWithOutLine extends StatelessWidget {
     BoxConstraints constraints() {
       double widthTemp = 120.0;
       double heightTemp = 47.0;
-      /*if (buttonExpandedType == ButtonExpandedTypeSolidOutline.DEFAULT_WIDTH) {
-        switch (buttonSizeType) {
-          case ButtonSizeTypeSolidOutline.SMALL_SIZE:
-            widthTemp = double.minPositive;
-            heightTemp = 35;
-            break;
-          case ButtonSizeTypeSolidOutline.LARGE_SIZE:
-            widthTemp = double.maxFinite;
-            heightTemp = 57.0;
-            break;
-          default:
-            widthTemp = 120;
-            heightTemp = 45.0;
-        }
-      }*/
       if (buttonExpandedType == ButtonExpandedTypeSolidOutline.BLOCK_WIDTH) {
         widthTemp = double.maxFinite;
         switch (buttonSizeType) {
@@ -200,6 +186,7 @@ class ButtonSolidWithOutLine extends StatelessWidget {
           horizontal: paddingHorizontal, vertical: paddingVertical);
     }
 
+    // Set buttonInSide Padding
     EdgeInsetsGeometry buttonInSidePadding() {
       double paddingHorizontal = 0.0;
       double paddingVertical = 0.0;
@@ -272,6 +259,7 @@ class ButtonSolidWithOutLine extends StatelessWidget {
             ],
           ),
         ),
+        // This is a callback function to perform an action.
         onPressed: () => onPressed,
       ),
     );

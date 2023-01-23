@@ -33,6 +33,7 @@ class BubbleMenu extends StatelessWidget {
       elevation: 2,
       highlightElevation: 2,
       disabledColor: item.bubbleColor,
+      // This is a onPressed event to perform an action.
       onPressed: item.onPress,
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -148,6 +149,7 @@ class FloatingActionBubble extends AnimatedWidget {
                   iconData,
                   color: iconColor,
                 ),
+          // This is a onPressed event to perform an action.
           onPressed: onPress,
         ),
       ],

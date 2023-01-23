@@ -200,7 +200,7 @@ class _ButtonsPageState extends State<ButtonsPage> {
       return tempRowView;
     }
 
-    //Center View
+    // Render buttons view.
     Widget _centerView() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 10),
@@ -235,29 +235,35 @@ class _ButtonsPageState extends State<ButtonsPage> {
       );
     }
 
-    //Back Press
+    // To handle the back button press action of the mobile.
     _onBackPressed() {
       print("ok");
       Navigator.pop(context);
       print("ok");
     }
 
+    // To handle the back button press action of the mobile.
     return WillPopScope(
-        onWillPop: _onBackPressed,
-        child: Container(
-            color: Colors.transparent,
-            child: SafeArea(
-                bottom: false,
-                child: Scaffold(
-                  backgroundColor: Colors.white,
-                  //appBar:_appBar(),
-                  body: Container(
-                    color: Colors.white,
-                    child: SingleChildScrollView(
-                        physics: BouncingScrollPhysics(),
-                        dragStartBehavior: DragStartBehavior.down,
-                        child: _centerView()),
-                  ),
-                ))));
+      onWillPop: _onBackPressed,
+      child: Container(
+        color: Colors.transparent,
+        child: SafeArea(
+          bottom: false,
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            //appBar:_appBar(),
+            body: Container(
+              color: Colors.white,
+              // Default widget
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                dragStartBehavior: DragStartBehavior.down,
+                child: _centerView(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

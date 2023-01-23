@@ -31,11 +31,12 @@ class _BadgesPageState extends State<BadgesPage> {
       "Completed",
       "Warning",
       "Notification",
-      "Unread"
-          "Draft",
+      "Unread",
+      "Draft",
       "Deleted"
     ];
-    //Center View
+
+    // Render badgets.
     Widget _centerView() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 10),
@@ -55,6 +56,7 @@ class _BadgesPageState extends State<BadgesPage> {
               listViewType: ListViewType.LIST_CUSTOM_ROW_ITEMS,
               tileWidget: ({singleRowData, index}) {
                 BadgeType badgeType = BadgeType.FOLLOWERS;
+                // Set BadgeType
                 if (index == 1) {
                   badgeType = BadgeType.LIKE;
                 } else if (index == 2) {
@@ -72,10 +74,12 @@ class _BadgesPageState extends State<BadgesPage> {
                 } else {
                   badgeType = BadgeType.DELETED;
                 }
+                // Set the right icon and value that will be displayed to the user.
                 return IconRightWithText(
                   index: index,
                   text: listData[index],
-                  iconRightWidget: Badge( isAndroid: ConstantC.isAndroidPlatform,
+                  iconRightWidget: Badge(
+                    isAndroid: ConstantC.isAndroidPlatform,
                     badgeType: badgeType,
                     badgeValue: "70",
                   ),
@@ -88,26 +92,30 @@ class _BadgesPageState extends State<BadgesPage> {
       );
     }
 
-    //Back Press
+    // To handle the back button press action of the mobile.
     _onBackPressed() {
       print("ok");
       Navigator.pop(context);
       print("ok");
     }
 
+    // To handle the back button press action of the mobile.
     return WillPopScope(
-        onWillPop: _onBackPressed,
-        child: Container(
-            color: Colors.transparent,
-            child: SafeArea(
-                bottom: false,
-                child: Scaffold(
-                  backgroundColor: Colors.white,
-                  //appBar:_appBar(),
-                  body: Container(
-                    color: Colors.white,
-                    child: _centerView(),
-                  ),
-                ))));
+      onWillPop: _onBackPressed,
+      child: Container(
+        color: Colors.transparent,
+        child: SafeArea(
+          bottom: false,
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            //appBar:_appBar(),
+            body: Container(
+              color: Colors.white,
+              child: _centerView(),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

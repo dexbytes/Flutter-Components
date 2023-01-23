@@ -22,7 +22,7 @@ class _MyHomePageState extends State<CheckBoxPage> {
 
   @override
   Widget build(BuildContext context) {
-    //Center View
+    //Render check box.
     Widget _centerView() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 10),
@@ -39,12 +39,16 @@ class _MyHomePageState extends State<CheckBoxPage> {
             ListView(
               shrinkWrap: true,
               children: [
+                // Create label check box.
                 LabeledCheckbox(
                   isAndroid: ConstantC.isAndroidPlatform,
                   label: 'This is the label text ',
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  // Set the selected value of checkbox
                   value: _isSelected1,
+                  // Catch the change value of check box, while tap.
                   onChanged: (bool newValue) {
+                    // Set the change value of checkbox.
                     setState(() {
                       _isSelected1 = newValue;
                     });
@@ -95,26 +99,30 @@ class _MyHomePageState extends State<CheckBoxPage> {
       );
     }
 
-    //Back Press
+    // Handle the back button press action of the mobile.
     _onBackPressed() {
       print("ok");
       Navigator.pop(context);
       print("ok");
     }
 
+    // Handle the back button press action of the mobile.
     return WillPopScope(
-        onWillPop: _onBackPressed,
-        child: Container(
-            color: Colors.transparent,
-            child: SafeArea(
-                bottom: false,
-                child: Scaffold(
-                  backgroundColor: Colors.white,
-                  //appBar:_appBar(),
-                  body: Container(
-                    color: Colors.white,
-                    child: _centerView(),
-                  ),
-                ))));
+      onWillPop: _onBackPressed,
+      child: Container(
+        color: Colors.transparent,
+        child: SafeArea(
+          bottom: false,
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            //appBar:_appBar(),
+            body: Container(
+              color: Colors.white,
+              child: _centerView(),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

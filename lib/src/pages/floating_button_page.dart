@@ -18,7 +18,10 @@ class _FloatingButtonsPageState extends State<FloatingButtonsPage> {
   @override
   Widget build(BuildContext context) {
     var childButtons = List<UnicornButton>();
-    childButtons.add(UnicornButton(
+
+    // Add button to childButtons list
+    childButtons.add(
+      UnicornButton(
         hasLabel: true,
         labelText: "Choo choo",
         currentButton: FloatingActionButton(
@@ -27,28 +30,45 @@ class _FloatingButtonsPageState extends State<FloatingButtonsPage> {
           mini: true,
           child: Icon(Icons.train),
           onPressed: () {},
-        )));
-    childButtons.add(UnicornButton(
+        ),
+      ),
+    );
+    childButtons.add(
+      UnicornButton(
         currentButton: FloatingActionButton(
-            heroTag: "airplane",
-            backgroundColor: Colors.greenAccent,
-            mini: true,
-            child: Icon(Icons.airplanemode_active))));
-    childButtons.add(UnicornButton(
+          heroTag: "airplane",
+          backgroundColor: Colors.greenAccent,
+          mini: true,
+          child: Icon(Icons.airplanemode_active),
+        ),
+      ),
+    );
+    childButtons.add(
+      UnicornButton(
         currentButton: FloatingActionButton(
-            heroTag: "directions",
-            backgroundColor: Colors.orange,
-            mini: true,
-            child: Icon(Icons.directions_walk))));
-    childButtons.add(UnicornButton(
+          heroTag: "directions",
+          backgroundColor: Colors.orange,
+          mini: true,
+          child: Icon(Icons.directions_walk),
+        ),
+      ),
+    );
+    childButtons.add(
+      UnicornButton(
         currentButton: FloatingActionButton(
-            heroTag: "directions",
-            backgroundColor: Colors.blueAccent,
-            mini: true,
-            child: Icon(Icons.directions_car))));
+          heroTag: "directions",
+          backgroundColor: Colors.blueAccent,
+          mini: true,
+          child: Icon(Icons.directions_car),
+        ),
+      ),
+    );
 
     var childButtons1 = List<UnicornButtonNew>();
-    childButtons1.add(UnicornButtonNew(
+
+    // Add button to childButtons1 list
+    childButtons1.add(
+      UnicornButtonNew(
         hasLabel: true,
         labelText: "Choo choo",
         currentButton: FloatingActionButton(
@@ -57,26 +77,41 @@ class _FloatingButtonsPageState extends State<FloatingButtonsPage> {
           mini: true,
           child: Icon(Icons.train),
           onPressed: () {},
-        )));
-    childButtons1.add(UnicornButtonNew(
+        ),
+      ),
+    );
+    childButtons1.add(
+      UnicornButtonNew(
         currentButton: FloatingActionButton(
-            heroTag: "airplane",
-            backgroundColor: Colors.greenAccent,
-            mini: true,
-            child: Icon(Icons.airplanemode_active))));
-    childButtons1.add(UnicornButtonNew(
+          heroTag: "airplane",
+          backgroundColor: Colors.greenAccent,
+          mini: true,
+          child: Icon(Icons.airplanemode_active),
+        ),
+      ),
+    );
+    childButtons1.add(
+      UnicornButtonNew(
         currentButton: FloatingActionButton(
-            heroTag: "directions",
-            backgroundColor: Colors.orange,
-            mini: true,
-            child: Icon(Icons.directions_walk))));
-    childButtons1.add(UnicornButtonNew(
+          heroTag: "directions",
+          backgroundColor: Colors.orange,
+          mini: true,
+          child: Icon(Icons.directions_walk),
+        ),
+      ),
+    );
+    childButtons1.add(
+      UnicornButtonNew(
         currentButton: FloatingActionButton(
-            heroTag: "directions",
-            backgroundColor: Colors.blueAccent,
-            mini: true,
-            child: Icon(Icons.directions_car))));
-    //Center View
+          heroTag: "directions",
+          backgroundColor: Colors.blueAccent,
+          mini: true,
+          child: Icon(Icons.directions_car),
+        ),
+      ),
+    );
+
+    //Render floating button view.
     Widget _centerView() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 10),
@@ -90,12 +125,6 @@ class _FloatingButtonsPageState extends State<FloatingButtonsPage> {
                 setState(() {});
               },
             ),
-            /*UnicornDialer(
-                backgroundColor: Color.fromRGBO(255, 255, 255, 0.6),
-                parentButtonBackground: Colors.redAccent,
-                orientation: UnicornOrientation.VERTICAL,
-                parentButton: Icon(Icons.add),
-                childButtons: childButtons),*/
             Container(
               height: 500,
               //width: 60,
@@ -148,14 +177,15 @@ class _FloatingButtonsPageState extends State<FloatingButtonsPage> {
                     ),
                   ),
                   DraggableFloatingActionButton(
-                      appContext: context,
-                      data: 'Demo',
-                      offset: new Offset(100, 100),
-                      // backgroundColor: Theme.of(context).accentColor,
-                      child: new Icon(
-                        Icons.wb_incandescent,
-                        color: Colors.yellow,
-                      ))
+                    appContext: context,
+                    data: 'Demo',
+                    offset: new Offset(100, 100),
+                    // backgroundColor: Theme.of(context).accentColor,
+                    child: new Icon(
+                      Icons.wb_incandescent,
+                      color: Colors.yellow,
+                    ),
+                  )
                 ],
               ),
             ),
@@ -164,30 +194,36 @@ class _FloatingButtonsPageState extends State<FloatingButtonsPage> {
       );
     }
 
-    //Back Press
+    // Handle the back button press action of the mobile.
     _onBackPressed() {
       Navigator.pop(context);
     }
 
+    // Handle the back button press action of the mobile.
     return WillPopScope(
-        onWillPop: _onBackPressed,
-        child: Container(
-            color: Colors.transparent,
-            child: SafeArea(
-                bottom: false,
-                child: Scaffold(
-                  //appBar:_appBar(),
-                  body: Container(
-                    // color: Colors.white,
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: SingleChildScrollView(
-                        physics: BouncingScrollPhysics(),
-                        dragStartBehavior: DragStartBehavior.down,
-                        child: _centerView(),
-                      ),
-                    ),
-                  ),
-                ))));
+      onWillPop: _onBackPressed,
+      child: Container(
+        color: Colors.transparent,
+        child: SafeArea(
+          bottom: false,
+          child: Scaffold(
+            //appBar:_appBar(),
+            body: Container(
+              // color: Colors.white,
+              child: Align(
+                alignment: Alignment.topCenter,
+                // Default widget
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  dragStartBehavior: DragStartBehavior.down,
+                  // Floating button view
+                  child: _centerView(),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

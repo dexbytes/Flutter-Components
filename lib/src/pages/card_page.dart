@@ -25,6 +25,7 @@ class _CardPageState extends State<CardPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Render card view.
     Widget cardView = CardView(
       isAndroid: ConstantC.isAndroidPlatform,
       cardType: CardType.DEFAULT,
@@ -40,8 +41,9 @@ class _CardPageState extends State<CardPage> {
                   image: NetworkImage(
                       'https://lh3.googleusercontent.com/RfaTa3bsm8zmVJYznMHpncW4HCNPmPf3fstlmU5hNNm-8j3Mz8nJjUj_avt1Qi0')),
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8.0),
-                  topRight: Radius.circular(8.0)),
+                topLeft: Radius.circular(8.0),
+                topRight: Radius.circular(8.0),
+              ),
               color: Colors.redAccent,
             ),
           ),
@@ -49,11 +51,13 @@ class _CardPageState extends State<CardPage> {
             height: 20,
           ),
           Container(
-            // color: Colors.green,
             child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text('Destination'.toUpperCase(),
-                    style: TextStyle(color: Colors.grey, fontSize: 14))),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Destination'.toUpperCase(),
+                style: TextStyle(color: Colors.grey, fontSize: 14),
+              ),
+            ),
           ),
           SizedBox(
             height: 0,
@@ -89,7 +93,7 @@ class _CardPageState extends State<CardPage> {
       return tempRowView;
     }
 
-    //Center View
+    //Render Center View
     Widget _centerView() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 10),
@@ -111,29 +115,34 @@ class _CardPageState extends State<CardPage> {
       );
     }
 
-    //Back Press
+    // Handle the back button press action of the mobile.
     _onBackPressed() {
       print("ok");
       Navigator.pop(context);
       print("ok");
     }
 
+    // Handle the back button press action of the mobile.
     return WillPopScope(
-        onWillPop: _onBackPressed,
-        child: Container(
-            color: Colors.transparent,
-            child: SafeArea(
-                bottom: false,
-                child: Scaffold(
-                  backgroundColor: Colors.white,
-                  //appBar:_appBar(),
-                  body: Container(
-                    color: Colors.white,
-                    child: SingleChildScrollView(
-                        physics: BouncingScrollPhysics(),
-                        dragStartBehavior: DragStartBehavior.down,
-                        child: _centerView()),
-                  ),
-                ))));
+      onWillPop: _onBackPressed,
+      child: Container(
+        color: Colors.transparent,
+        child: SafeArea(
+          bottom: false,
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: Container(
+              color: Colors.white,
+              // Default widget
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                dragStartBehavior: DragStartBehavior.down,
+                child: _centerView(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

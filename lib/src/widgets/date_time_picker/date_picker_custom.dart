@@ -48,6 +48,7 @@ const double _kTimerPickerLabelFontSize = 17.0;
 // The width of each column of the countdown time picker.
 const double _kTimerPickerColumnIntrinsicWidth = 106;
 
+// Theme text style
 TextStyle _themeTextStyle(BuildContext context, {bool isValid = true}) {
   final TextStyle style =
       CupertinoTheme.of(context).textTheme.dateTimePickerTextStyle;
@@ -58,6 +59,7 @@ TextStyle _themeTextStyle(BuildContext context, {bool isValid = true}) {
               CupertinoColors.inactiveGray, context));
 }
 
+// Function to animate item
 void _animateColumnControllerToItem(
     FixedExtentScrollController controller, int targetItem) {
   controller.animateToItem(
@@ -796,6 +798,7 @@ class _DatePickerCustomDateTimeState extends State<DatePickerCustom> {
         !(widget.maximumDate?.isBefore(rangeStart) ?? false);
   }
 
+  // Widget to Hour
   Widget _buildHourPicker(double offAxisFraction,
       TransitionBuilder itemPositioningBuilder, Widget selectionOverlay) {
     return NotificationListener<ScrollNotification>(
@@ -864,6 +867,7 @@ class _DatePickerCustomDateTimeState extends State<DatePickerCustom> {
         ));
   }
 
+  // Widget to Minute picker
   Widget _buildMinutePicker(double offAxisFraction,
       TransitionBuilder itemPositioningBuilder, Widget selectionOverlay) {
     return NotificationListener<ScrollNotification>(
@@ -918,6 +922,7 @@ class _DatePickerCustomDateTimeState extends State<DatePickerCustom> {
     );
   }
 
+  // Widget to pick AM/PM
   Widget _buildAmPmPicker(double offAxisFraction,
       TransitionBuilder itemPositioningBuilder, Widget selectionOverlay) {
     return NotificationListener<ScrollNotification>(
@@ -1169,6 +1174,7 @@ class _DatePickerCustomDateState extends State<DatePickerCustom> {
     PaintingBinding.instance.systemFonts.addListener(_handleSystemFontsChange);
   }
 
+  // Function to change font
   void _handleSystemFontsChange() {
     setState(() {
       // System fonts change might cause the text layout width to change.
@@ -1314,6 +1320,7 @@ class _DatePickerCustomDateState extends State<DatePickerCustom> {
     );
   }
 
+  // Year picker widget
   Widget _buildYearPicker(double offAxisFraction,
       TransitionBuilder itemPositioningBuilder, Widget selectionOverlay) {
     return NotificationListener<ScrollNotification>(

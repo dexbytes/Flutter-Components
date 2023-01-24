@@ -242,7 +242,6 @@ class DividerListCustom extends StatelessWidget {
                   indent: 0.0,
                   endIndent: 0.0,
                 ),
-            //controller: scrollController,
             padding: listViewEdgeInsets,
             physics: physics ?? AlwaysScrollableScrollPhysics(),
             shrinkWrap: shrinkWrap,

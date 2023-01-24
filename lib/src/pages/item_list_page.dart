@@ -31,10 +31,11 @@ class _ItemListPageState extends State<ItemListPage> {
       "Completed",
       "Warning",
       "Notification",
-      "Unread" "Draft",
+      "Unread",
+      "Draft",
       "Deleted"
     ];
-    //Center View
+    //Render List view.
     Widget _centerView() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 0),
@@ -50,6 +51,7 @@ class _ItemListPageState extends State<ItemListPage> {
             ),
             ListViewCustom(
               shrinkWrap: true,
+              // pass list data
               listData: listData,
               listViewType: ListViewType.LIST_ITEMS,
               tileWidget: ({singleRowData, index}) {
@@ -87,26 +89,30 @@ class _ItemListPageState extends State<ItemListPage> {
       );
     }
 
-    //Back Press
+    // Handle the back button press action of the mobile.
     _onBackPressed() {
       print("ok");
       Navigator.pop(context);
       print("ok");
     }
 
+    // Handle the back button press action of the mobile.
     return WillPopScope(
-        onWillPop: _onBackPressed,
-        child: Container(
-            color: Colors.transparent,
-            child: SafeArea(
-                bottom: false,
-                child: Scaffold(
-                  backgroundColor: Colors.white,
-                  //appBar:_appBar(),
-                  body: Container(
-                    color: Colors.white,
-                    child: _centerView(),
-                  ),
-                ))));
+      onWillPop: _onBackPressed,
+      child: Container(
+        color: Colors.transparent,
+        child: SafeArea(
+          bottom: false,
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            //appBar:_appBar(),
+            body: Container(
+              color: Colors.white,
+              child: _centerView(),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

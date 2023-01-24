@@ -65,7 +65,7 @@ class ListViewCustom extends StatelessWidget {
     } else if (Platform.isAndroid) {
       isAndroid = true;
     }
-    //Ios check box custome
+    //Ios check box custom
     Widget iosCheckBox = Container(
       margin: EdgeInsets.symmetric(vertical: 5),
       padding: EdgeInsets.all(
@@ -110,7 +110,7 @@ class ListViewCustom extends StatelessWidget {
       return tempRowView;
     }
 
-    //Main List view
+    //Widget Main List view
     Widget getListContainer() {
       return Container(
         color: listBgColor == null ? Colors.white : listBgColor,

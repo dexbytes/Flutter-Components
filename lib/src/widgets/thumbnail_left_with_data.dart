@@ -25,6 +25,7 @@ class ThumbnailLeftWithData extends StatefulWidget {
 class _ThumbnailLeftWithDataState extends State<ThumbnailLeftWithData> {
   @override
   Widget build(BuildContext context) {
+    // Render avatar view
     Widget _buildAvatarView() {
       return SizedBox(
         height: widget.avatarViewSize.height,
@@ -40,6 +41,7 @@ class _ThumbnailLeftWithDataState extends State<ThumbnailLeftWithData> {
       );
     }
 
+    // Thumb nail text
     Widget _buildText() {
       return widget.rightWidget;
     }

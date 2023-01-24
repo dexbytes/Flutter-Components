@@ -25,6 +25,7 @@ class AvatarLeftWithData extends StatefulWidget {
 class _AvatarLeftWithDataState extends State<AvatarLeftWithData> {
   @override
   Widget build(BuildContext context) {
+    // Avatar view widget
     Widget _buildAvatarView() {
       return SizedBox(
         height: widget.avatarViewSize.height,

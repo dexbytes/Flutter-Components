@@ -83,29 +83,28 @@ class CardView extends StatelessWidget {
       return MainAxisSize.min;
     }
 
+    // Render card
     return Card(
-        color: cardColor,
-        shadowColor: shadowColorTemp,
-        elevation: elevationGet(),
-        shape: shape(),
-        margin: margin != null
-            ? margin
-            : EdgeInsets.symmetric(
-                horizontal: isAndroid ? 16 : 16, vertical: isAndroid ? 4 : 8),
-        child: Row(
-          mainAxisSize: cardWithType(),
-          /*crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,*/
-          children: [
-            Padding(
-              padding: padding != null
-                  ? padding
-                  : EdgeInsets.symmetric(
-                      horizontal: isAndroid ? 0 : 0,
-                      vertical: isAndroid ? 0 : 0),
-              child: child,
-            ),
-          ],
-        ));
+      color: cardColor,
+      shadowColor: shadowColorTemp,
+      elevation: elevationGet(),
+      shape: shape(),
+      margin: margin != null
+          ? margin
+          : EdgeInsets.symmetric(
+              horizontal: isAndroid ? 16 : 16, vertical: isAndroid ? 4 : 8),
+      child: Row(
+        mainAxisSize: cardWithType(),
+        children: [
+          Padding(
+            padding: padding != null
+                ? padding
+                : EdgeInsets.symmetric(
+                    horizontal: isAndroid ? 0 : 0, vertical: isAndroid ? 0 : 0),
+            child: child,
+          ),
+        ],
+      ),
+    );
   }
 }

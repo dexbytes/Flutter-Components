@@ -53,9 +53,11 @@ class _CustomSwitchPageState extends State<CustomSwitchPage> {
             style: TextStyle(color: Colors.white),
           ),
           actions: [
+            // use custom switch widget
             CustomSwitch(
               value: isSwitchOn,
               onToggle: (value) {
+                // Set toggle value in to isSwitchOn var
                 setState(() {
                   isSwitchOn = value;
                 });
@@ -63,6 +65,7 @@ class _CustomSwitchPageState extends State<CustomSwitchPage> {
             ),
           ],
         ),
+        // Default widget
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(10.0),
@@ -76,10 +79,12 @@ class _CustomSwitchPageState extends State<CustomSwitchPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
+                        // use custom switch
                         CustomSwitch(
                           isAndroid: ConstantC.isAndroidPlatform,
                           value: status1,
                           onToggle: (val) {
+                            // Set toggle value in to isSwitchOn var
                             setState(() {
                               status1 = val;
                             });
@@ -98,10 +103,12 @@ class _CustomSwitchPageState extends State<CustomSwitchPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
+                        // use custom switch
                         CustomSwitch(
                           isAndroid: ConstantC.isAndroidPlatform,
                           value: status1,
                           onToggle: (val) {
+                            // Set toggle value in to isSwitchOn var
                             setState(() {
                               status1 = val;
                             });
@@ -355,6 +362,7 @@ class _CustomSwitchPageState extends State<CustomSwitchPage> {
                           ),
                           activeColor: Color(0xFF55DDCA),
                           inactiveColor: Color(0xFF54C5F8),
+                          // use network image in avatar icon
                           activeIcon: Image.network(
                             "https://img2.pngio.com/functional-bits-in-flutter-flutter-community-medium-flutter-png-1000_1000.png",
                           ),

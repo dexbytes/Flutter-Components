@@ -32,6 +32,7 @@ class _DatePickerPageState extends State<DatePickerPage> {
       return tempRowView;
     }
 
+    // Date picker button
     Widget datePicker = ElevatedButton(
       child: Text('Date Picker'),
       onPressed: () {
@@ -45,6 +46,7 @@ class _DatePickerPageState extends State<DatePickerPage> {
       },
     );
 
+    // Time picker button
     Widget timePicker = ElevatedButton(
       child: Text('Time Picker'),
       onPressed: () {
@@ -58,7 +60,8 @@ class _DatePickerPageState extends State<DatePickerPage> {
         );
       },
     );
-    //Center View
+
+    //Render view
     Widget _centerView() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 10),
@@ -94,26 +97,29 @@ class _DatePickerPageState extends State<DatePickerPage> {
       );
     }
 
-    //Back Press
+    // Handle the back button press action of the mobile.
     _onBackPressed() {
       print("ok");
       Navigator.pop(context);
       print("ok");
     }
 
+    // Handle the back button press action of the mobile.
     return WillPopScope(
-        onWillPop: _onBackPressed,
-        child: Container(
-            color: Colors.transparent,
-            child: SafeArea(
-                bottom: false,
-                child: Scaffold(
-                  backgroundColor: Colors.white,
-                  //appBar:_appBar(),
-                  body: Container(
-                    color: Colors.white,
-                    child: _centerView(),
-                  ),
-                ))));
+      onWillPop: _onBackPressed,
+      child: Container(
+        color: Colors.transparent,
+        child: SafeArea(
+          bottom: false,
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: Container(
+              color: Colors.white,
+              child: _centerView(),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
